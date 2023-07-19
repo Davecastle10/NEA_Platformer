@@ -40,29 +40,27 @@ class Game:
             self.screen.blit(self.background_img_1, (0, 0))
 
             self.player.update((self.player_movement[1] - self.player_movement[0], 0))
-
+            self.player.render(self.screen)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
 
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_LEFT:
+                        self.player_movement[0] = True
+                    if event.key == pygame.K_RIGHT:
+                        self.player_movement[1] = True
+
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_LEFT:
+                        self.player_movement[0] = False
+                    if event.key == pygame.K_RIGHT:
+                        self.player_movement[1] = False
+
+            #self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
             pygame.display.update()
             self.clock.tick(60)
-
-
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    self.player_movement[0] = True
-                if event.key == pygame.K_RIGHT:
-                    self.player_movement[1] = True
-
-
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_LEFT:
-                    self.player_movement[0] = False
-                if event.key == pygame.K_RIGHT:
-                    self.player_movement[1] = False
-
 
 Game().run()
