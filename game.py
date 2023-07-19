@@ -1,21 +1,29 @@
 import sys
 import pygame 
 
-pygame.init()
+class Game:
+    def __init__(self):
+        pygame.init()
 
-screen = pygame.display.set_mode((640,480))
-pygame.display.set_caption("NEA Platformer")
+        self.screen = pygame.display.set_mode((600,480))
+        pygame.display.set_caption("NEA Platformer")
+
+        self.clock = pygame.time.Clock()
+
+        self.background_img_1 = pygame.image.load("assets/images/backgrounds/green_hills_1.png")
+
+    
+    def run(self):
+        while True:
+            self.screen.blit(self.background_img_1, (0, 0))
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+            pygame.display.update()
+            self.clock.tick(60)
 
 
-clock = pygame.time.Clock()
-
-game_running = True
-
-while game_running == True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-
-    pygame.display.update()
-    clock.tick(60)
+Game().run()
