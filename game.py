@@ -1,5 +1,5 @@
+import os
 import sys
-
 import pygame 
 
 from scripts.utils import load_image, load_images
@@ -21,7 +21,7 @@ class Game:
 
         self.clock = pygame.time.Clock()
 
-        self.background_img_1 = pygame.image.load("assets/images/backgrounds/green_hills_2_small.png")
+        self.background_img_1 = pygame.image.load("data/images/backgrounds/green_hills_2_small.png")
 
         self.assets = {
             'decor': load_images('tiles/decor'),

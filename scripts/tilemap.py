@@ -1,8 +1,8 @@
-import os 
+import os
 import pygame
 
 
-BASE_IMG_PATH = 'assets/images/'
+BASE_IMG_PATH = 'data/images/'
 
 class Tilemap:
     def __init__(self, tile_size=16):
