@@ -2,7 +2,7 @@ import sys
 
 import pygame 
 
-from scripts.utils import load_image
+from scripts.utils import load_image, load_images
 from scripts.entities import PhysicsEntity
 
 
@@ -19,28 +19,30 @@ class Game:
         self.display = pygame.Surface((320, 240))
 
 
-        
-
         self.clock = pygame.time.Clock()
 
-        self.background_img_1 = pygame.image.load("assets/images/backgrounds/green_hills_1.png")
-
-        self.player_movement = [False, False, False, False]
+        self.background_img_1 = pygame.image.load("assets/images/backgrounds/green_hills_2_small.png")
 
         self.assets = {
-            'player': load_image('entities/player/player_v1.png')
+            'decor': load_images('tiles/decor'),
+            'grass': load_images('tiles/grass'),
+            'large_decor': load_images('tiles/large_decor'),
+            'stone': load_images('tiles/stone'),
+            'player': load_image('entities/player/player_v1.png'),
         }
 
-        self.player = PhysicsEntity(self, 'player', (310, 190), (80, 100))
+
+        self.player_movement = [False, False, False, False]
+        self.player = PhysicsEntity(self, 'player', (130, 70), (80, 100))
 
 
 
     def run(self):
         while True:
-            self.screen.blit(self.background_img_1, (0, 0))
+            self.display.blit(self.background_img_1, (0, 0))
 
             self.player.update((self.player_movement[1] - self.player_movement[0], 0))
-            self.player.render(self.screen)
+            self.player.render(self.display)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -59,7 +61,7 @@ class Game:
                     if event.key == pygame.K_RIGHT:
                         self.player_movement[1] = False
 
-            #self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
+            self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
             pygame.display.update()
             self.clock.tick(60)
 
