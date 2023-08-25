@@ -28,12 +28,12 @@ class Game:
             'grass': load_images('tiles/grass'),
             'large_decor': load_images('tiles/large_decor'),
             'stone': load_images('tiles/stone'),
-            'player': load_image('entities/player/player_v1.png'),
+            'player': load_image('entities/player/idle/00.png'),
         }
 
 
         self.player_movement = [False, False, False, False]
-        self.player = PhysicsEntity(self, 'player', (130, 70), (80, 100))
+        self.player = PhysicsEntity(self, 'player', (130, 70), (8, 15))
 
 
 
