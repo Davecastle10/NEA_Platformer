@@ -1,3 +1,5 @@
+# all of this is from dafluffypotatos tutorial https://www.youtube.com/watch?v=2gABYM5M0ww&t=6923s unless otherwaise stated atm 
+
 import pygame
 
 class PhysicsEntity:
@@ -16,7 +18,7 @@ class PhysicsEntity:
     def update(self, tilemap, movement=(0, 0)):
         self.collisons = {'up': False, 'down': False, 'right': False, 'left': False}
 
-        
+
         frame_movement = (movement[0] + self.velocity[0], movement[1] + self.velocity[1])
 
         # seperated collisions into x and y to make them easier
@@ -49,6 +51,6 @@ class PhysicsEntity:
         if self.collisons['down'] or self.collisons['up']:
             self.velocity[1] = 0
 
-    def render(self, surf):
-        surf.blit(self.game.assets['player'], self.pos)
+    def render(self, surf, offset = (0, 0)):
+        surf.blit(self.game.assets['player'], (self.pos[0] - offset[0], self.pos[1] - offset[1] ))
 

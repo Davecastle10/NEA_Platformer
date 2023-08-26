@@ -1,3 +1,5 @@
+# all of this is from dafluffypotatos tutorial https://www.youtube.com/watch?v=2gABYM5M0ww&t=6923s unless otherwaise stated atm 
+
 import os
 import pygame
 
