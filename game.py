@@ -4,6 +4,7 @@ import pygame
 
 from scripts.utils import load_image, load_images
 from scripts.entities import PhysicsEntity
+from scripts.tilemap import Tilemap
 
 
 
@@ -30,16 +31,19 @@ class Game:
             'stone': load_images('tiles/stone'),
             'player': load_image('entities/player/idle/00.png'),
         }
-
+        
 
         self.player_movement = [False, False, False, False]
         self.player = PhysicsEntity(self, 'player', (130, 70), (8, 15))
 
+        self.tilemap = Tilemap(self, tile_size=16)
 
 
     def run(self):
         while True:
             self.display.blit(self.background_img_1, (0, 0))
+
+            self.tilemap.render(self.display)
 
             self.player.update((self.player_movement[1] - self.player_movement[0], 0))
             self.player.render(self.display)
