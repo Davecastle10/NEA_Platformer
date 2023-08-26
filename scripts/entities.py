@@ -6,14 +6,37 @@ class PhysicsEntity:
         self.type = e_type
         self.pos = list(pos)
         self.size = size
-        self.velocity = [0, 0]
+        self.velocity = [0, 0] # x velociyt then y velocity
+
+    def rect(self):
+        return pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1])
 
     
-    def update(self, movement=(0, 0)):
+    def update(self, tilemap, movement=(0, 0)):
         frame_movement = (movement[0] + self.velocity[0], movement[1] + self.velocity[1])
 
-        self.pos[0] += frame_movement[0]
-        self.pos[1] += frame_movement[1]
+        # seperated collisions into x and y to make them easier
+        self.pos[0] += frame_movement[0]# come back later and try to remove the pos parts by using fRects that are rects that support floats
+        entity_rect = self.rect()
+        for rect in tilemap.physics_rects_around(self.pos):
+            if entity_rect.colliderect(rect):
+                if frame_movement[0] > 0:
+                    entity_rect.right = rect.left
+                if frame_movement[0] <0:
+                    entity_rect.left = rect.right
+                self.pos[0] = entity_rect.x
+
+        self.pos[1] += frame_movement[1]# come back later and try to remove the pos parts by using fRects that are rects that support floats
+        entity_rect = self.rect()
+        for rect in tilemap.physics_rects_around(self.pos):
+            if entity_rect.colliderect(rect):
+                if frame_movement[1] > 0:
+                    entity_rect.bottom = rect.top
+                if frame_movement[1] <0:
+                    entity_rect.top = rect.bottom
+                self.pos[1] = entity_rect.y
+
+        self.velocity[1] = min(5, self.velocity[1] + 0.1) # starts with with a down vel of 1 and increments by 0. until it reaches 5 which is terminal velocity
 
     
     def render(self, surf):

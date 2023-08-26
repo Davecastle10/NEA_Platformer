@@ -45,8 +45,10 @@ class Game:
 
             self.tilemap.render(self.display)
 
-            self.player.update((self.player_movement[1] - self.player_movement[0], 0))
+            self.player.update(self.tilemap, (self.player_movement[1] - self.player_movement[0], 0))
             self.player.render(self.display)
+
+            #print(self.tilemap.tiles_around(self.player.pos)) # used for error checking on what tiles are within a 3x3 radius
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
