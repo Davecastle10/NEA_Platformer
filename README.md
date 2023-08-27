@@ -6,3 +6,5 @@ At the moment most of the code is taken from a tutorial by dafluffypotatos https
 now i have implemnetd the level editor properly, i need to go back and optimise the game for pygame-ce, and by doing this i should end up replacing a significant amount fo the code, so i would actually be able to submit the game as my own.
 
 Once that is done i can go in and add a gui menu for the game (probably with tkinter), and then i can add in the question system, enemies and combat, i think the plan will also be to make a gui for the level editor, so that the players can make their own levels and add in their own questions. And if i get all of that done, i will try to add in procedural level generation.
+
+got to 3:13:32 in tutorial

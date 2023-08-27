@@ -6,12 +6,12 @@ import pygame
 
 from scripts.utils import load_images
 from scripts.tilemap import Tilemap
-
+# dafluffypotatoes tutorial code
 RENDER_SCALE = 2.0
 
 
 
-
+# dafluffypotatoes tutorial code
 class Editor:
     def __init__(self):
         pygame.init()
@@ -55,7 +55,7 @@ class Editor:
 
         self.ongrid = True
 
-
+    # dafluffypotatoes tutorial code
     def run(self):
         while True:
             self.display.fill((0, 0, 0))

@@ -2,6 +2,7 @@
 
 import pygame
 
+# dafluffypotatoes tutorial code
 class PhysicsEntity:
     def __init__(self, game, e_type, pos, size):
         self.game = game
@@ -16,15 +17,17 @@ class PhysicsEntity:
         self.flip = False
         self.set_action('idle')
 
+    # dafluffypotatoes tutorial code
     def rect(self):
-        return pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1])
+        return pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1])# rect values: left, top, width, height - left and top are the x and y coords of the top left corner of the rect and the width and height are used to create the rect as they provide the dimensions that need to be drawn from the top left corner
     
+    # dafluffypotatoes tutorial code
     def set_action(self, action):
         if action != self.action:
             self.action = action
             self.animation = self.game.assets[self.type + '/' + self.action].copy()
 
-    
+    # dafluffypotatoes tutorial code
     def update(self, tilemap, movement=(0, 0)):
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
 
@@ -68,16 +71,17 @@ class PhysicsEntity:
 
         self.animation.update()
 
+    # dafluffypotatoes tutorial code
     def render(self, surf, offset = (0, 0)):
         surf.blit(pygame.transform.flip(self.animation.img(), self.flip, False), (self.pos[0] - offset[0] + self.anim_offset[0], self.pos[1] - offset[1] + self.anim_offset[1])) # sel.flip is the x axis flip and Fasle is the y-axis flip option, but flipping in the y - axis is verry reare so most of the time it is not needed
 
 
-
+# dafluffypotatoes tutorial code
 class Player(PhysicsEntity):
     def __init__(self, game, pos, size):
         super().__init__(game, 'player', pos, size)
         self.air_time = 0
-
+    # dafluffypotatoes tutorial code
     def update(self, tilemap, movement = (0, 0)):
         super().update(tilemap, movement = movement)
         

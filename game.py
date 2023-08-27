@@ -13,7 +13,7 @@ from scripts.clouds import Clouds
 
 
 
-
+# dafluffypotatoes tutorial code
 class Game:
     def __init__(self):
         pygame.init()
@@ -52,6 +52,7 @@ class Game:
 
         self.tilemap.load('map.json')
 
+    # dafluffypotatoes tutorial code
     def run(self):
         while True:
             self.display.blit(self.assets['background'], (0, 0))
