@@ -7,10 +7,12 @@ class PhysicsEntity:
     def __init__(self, game, e_type, pos, size):
         self.game = game
         self.type = e_type
-        self.pos = list(pos)
+        self.pos = pos
         self.size = size
         self.velocity = [0, 0] # x velociyt then y velocity
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
+
+        self.frect = pygame.FRect(self.pos[0], self.pos[1], self.size[0], self.size[1])
 
         self.action = ''
         self.anim_offset = (-3, 0) # so that the entitity img can overflow for the animations, can be set to (-3, -3) but then the player images need adjusting
@@ -30,32 +32,35 @@ class PhysicsEntity:
     # dafluffypotatoes tutorial code but is now over half mine
     
     def update(self, tilemap, movement_input=(0, 0)):
-        entity_rect = self.rect()
-        entity_pos = entity_rect.x, entity_rect.y
 
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
         frame_movement = (movement_input[0] + self.velocity[0], movement_input[1] + self.velocity[1])
+        self.frect.x = frame_movement[0]
+        self.frect.y = frame_movement[1]
+        #self.frect.move_ip(frame_movement[0], frame_movement[1])
+        frect_pos = self.frect.x, self.frect.y
+        
+
 
         # seperated collisions into x and y to make them easier
-        entity_rect.x += frame_movement[0]
-        for rect in tilemap.physics_rects_around(entity_pos):
-            if entity_rect.colliderect(rect):
+        
+        for rect in tilemap.physics_rects_around(frect_pos):
+            if self.frect.colliderect(rect):
                 if frame_movement[0] > 0:# if movong right
-                    entity_rect.right = rect.left
+                    self.frect.right = rect.left
                     self.collisions['right'] = True
                 if frame_movement[0] <0:# if moving left
-                    entity_rect.left = rect.right
+                    self.frect.left = rect.right
                     self.collisions['left'] = True
                 
 
-        entity_rect.y += frame_movement[1]# come back later and try to remove the pos parts by using fRects that are rects that support floats  
-        for rect in tilemap.physics_rects_around(entity_pos):
-            if entity_rect.colliderect(rect):
+        for rect in tilemap.physics_rects_around(frect_pos):
+            if self.frect.colliderect(rect):
                 if frame_movement[1] > 0:# moving down
-                    entity_rect.bottom = rect.top
+                    self.frect.bottom = rect.top
                     self.collisions['down'] = True
                 if frame_movement[1] <0:# moving left
-                    entity_rect.top = rect.bottom
+                    self.frect.top = rect.bottom
                     self.collisions['up'] = True
         
         
@@ -83,7 +88,7 @@ class Player(PhysicsEntity):
         super().__init__(game, 'player', pos, size)
         self.air_time = 0
     # dafluffypotatoes tutorial code
-    def update(self, tilemap, movement_input = (0, 0)):
+    def update(self, tilemap, movement_input):
         super().update(tilemap, movement_input = movement_input)
         
 

@@ -159,6 +159,8 @@ class Editor:
                         self.movement[3] = True
                     if event.key == pygame.K_LSHIFT:
                         self.shift = True
+                    if event.key == pygame.K_RSHIFT:
+                        self.shift = True
                     if event.key == pygame.K_g:
                         self.ongrid = not self.ongrid
                     if event.key == pygame.K_o:
@@ -187,6 +189,9 @@ class Editor:
                         self.movement[3] = False
                     if event.key == pygame.K_LSHIFT:
                         self.shift = False
+                    if event.key == pygame.K_RSHIFT:
+                        self.shift = False
+
 
 
             self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
