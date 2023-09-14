@@ -51,6 +51,7 @@ class PhysicsEntity:
                 if frame_movement[0] <0:# if moving left
                     self.frect.left = rect.right
                     self.collisions['left'] = True
+                self.pos[0] = self.frect.x
                 
 
         for rect in tilemap.physics_rects_around(self.pos):
@@ -61,7 +62,7 @@ class PhysicsEntity:
                 if frame_movement[1] <0:# moving left
                     self.frect.top = rect.bottom
                     self.collisions['up'] = True
-        
+                self.pos[1] = self.frect.y
         
         if movement_input[0] > 0:# if move right then face right
             self.flip = False
