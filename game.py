@@ -19,8 +19,8 @@ class Game:
         pygame.init()
 
         pygame.display.set_caption("NEA Platformer")
-        self.screen = pygame.display.set_mode((1280,800))
-        self.display = pygame.Surface((640, 400))
+        self.screen = pygame.display.set_mode((1280,760))
+        self.display = pygame.Surface((640, 380))
 
 
         self.clock = pygame.time.Clock()

@@ -43,7 +43,7 @@ class PhysicsEntity:
 
         # seperated collisions into x and y to make them easier
         
-        for rect in tilemap.physics_rects_around(frect_pos):
+        for rect in tilemap.physics_rects_around(self.pos):
             if self.frect.colliderect(rect):
                 if frame_movement[0] > 0:# if movong right
                     self.frect.right = rect.left
@@ -53,7 +53,7 @@ class PhysicsEntity:
                     self.collisions['left'] = True
                 
 
-        for rect in tilemap.physics_rects_around(frect_pos):
+        for rect in tilemap.physics_rects_around(self.pos):
             if self.frect.colliderect(rect):
                 if frame_movement[1] > 0:# moving down
                     self.frect.bottom = rect.top
