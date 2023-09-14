@@ -19,8 +19,8 @@ class Game:
         pygame.init()
 
         pygame.display.set_caption("NEA Platformer")
-        self.screen = pygame.display.set_mode((640,480))
-        self.display = pygame.Surface((320, 240))
+        self.screen = pygame.display.set_mode((1280,800))
+        self.display = pygame.Surface((640, 400))
 
 
         self.clock = pygame.time.Clock()
@@ -32,7 +32,7 @@ class Game:
             'large_decor': load_images('tiles/large_decor'),
             'stone': load_images('tiles/stone'),
             'player': load_image('entities/player/idle/00.png'),
-            'background': load_image('backgrounds/blue_sky_waves.png'),
+            'background': load_image('backgrounds/blue_sky_waves_big.png'),
             'clouds' : load_images('clouds'),
             'player/idle' : Animation(load_images('entities/player/idle'), img_dur=6),# currently dont have extra images of r the idle animation but this is for when i have made them
             'player/jump' : Animation(load_images('entities/player/jump'), img_dur=4),

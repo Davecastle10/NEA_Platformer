@@ -7,7 +7,7 @@ class PhysicsEntity:
     def __init__(self, game, e_type, pos, size):
         self.game = game
         self.type = e_type
-        self.pos = pos
+        self.pos = list(pos)
         self.size = size
         self.velocity = [0, 0] # x velociyt then y velocity
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
@@ -32,12 +32,11 @@ class PhysicsEntity:
     # dafluffypotatoes tutorial code but is now over half mine
     
     def update(self, tilemap, movement_input=(0, 0)):
-
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
         frame_movement = (movement_input[0] + self.velocity[0], movement_input[1] + self.velocity[1])
-        self.frect.x = frame_movement[0]
-        self.frect.y = frame_movement[1]
-        #self.frect.move_ip(frame_movement[0], frame_movement[1])
+        self.pos[0] += frame_movement[0]
+        self.pos[1] += frame_movement[1]
+        self.frect.move_ip(frame_movement[0], frame_movement[1])
         frect_pos = self.frect.x, self.frect.y
         
 
@@ -64,7 +63,6 @@ class PhysicsEntity:
                     self.collisions['up'] = True
         
         
-
         if movement_input[0] > 0:# if move right then face right
             self.flip = False
         if movement_input[0] < 0:# if move left the flip to face left
