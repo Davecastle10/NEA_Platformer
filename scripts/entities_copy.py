@@ -12,7 +12,7 @@ class PhysicsEntity:
         self.velocity = [0, 0] # x velociyt then y velocity
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
 
-        self.frect = pygame.FRect(self.pos[0], self.pos[1], self.size[0], self.size[1])
+        self.e_frect = pygame.FRect(self.pos[0], self.pos[1], self.size[0], self.size[1])
 
         self.action = ''
         self.anim_offset = (-3, 0) # so that the entitity img can overflow for the animations, can be set to (-3, -3) but then the player images need adjusting
@@ -20,7 +20,7 @@ class PhysicsEntity:
         self.set_action('idle')
 
     # dafluffypotatoes tutorial code
-    def rect(self):
+    def frect(self):
         return pygame.FRect(self.pos[0], self.pos[1], self.size[0], self.size[1])# rect values: left, top, width, height - left and top are the x and y coords of the top left corner of the rect and the width and height are used to create the rect as they provide the dimensions that need to be drawn from the top left corner
     
     # dafluffypotatoes tutorial code
@@ -36,33 +36,31 @@ class PhysicsEntity:
         frame_movement = (movement_input[0] + self.velocity[0], movement_input[1] + self.velocity[1])
         self.pos[0] += frame_movement[0]
         self.pos[1] += frame_movement[1]
-        self.frect.move_ip(frame_movement[0], frame_movement[1])
-        frect_pos = self.frect.x, self.frect.y
+        self.e_frect.move_ip(frame_movement[0], frame_movement[1])
+        frect_pos = self.e_frect.x, self.e_frect.y
+
         
-
-
         # seperated collisions into x and y to make them easier
         
-        for rect in tilemap.physics_rects_around(self.pos):
-            if self.frect.colliderect(rect):
+        for rect in tilemap.physics_rects_around(frect_pos):
+            if self.e_frect.colliderect(rect):
                 if frame_movement[0] > 0:# if movong right
-                    self.frect.right = rect.left
+                    self.e_frect.right = rect.left
                     self.collisions['right'] = True
                 if frame_movement[0] <0:# if moving left
-                    self.frect.left = rect.right
+                    self.e_frect.left = rect.right
                     self.collisions['left'] = True
-                self.pos[0] = self.frect.x
-                
+                self.pos[0] = self.e_frect.x
 
-        for rect in tilemap.physics_rects_around(self.pos):
-            if self.frect.colliderect(rect):
+        for rect in tilemap.physics_rects_around(frect_pos):
+            if self.e_frect.colliderect(rect):
                 if frame_movement[1] > 0:# moving down
-                    self.frect.bottom = rect.top
+                    self.e_frect.bottom = rect.top
                     self.collisions['down'] = True
                 if frame_movement[1] <0:# moving left
-                    self.frect.top = rect.bottom
+                    self.e_frect.top = rect.bottom
                     self.collisions['up'] = True
-                self.pos[1] = self.frect.y
+                self.pos[1] = self.e_frect.y
         
         if movement_input[0] > 0:# if move right then face right
             self.flip = False
