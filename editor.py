@@ -4,6 +4,8 @@ import os
 import sys
 import pygame 
 
+import glob
+
 from scripts.utils import load_images
 from scripts.tilemap import Tilemap
 # dafluffypotatoes tutorial code
@@ -37,10 +39,17 @@ class Editor:
 
         self.tilemap = Tilemap(self, tile_size=16)
 
-        try:
-            self.tilemap.load('map.json')
-        except FileNotFoundError:
-            pass
+
+        # creating a list of the file locations of the maps
+        self.maps_path = 'data/maps'
+        self.maps_list = list()
+        for filename in glob.iglob(f'{self.maps_path}/*'):
+            self.maps_list.append(filename)
+
+        #self.current_map = 'data/maps/map.json' # don't think i need this anymore
+        self.current_map_index = 0
+        self.tilemap.load(self.maps_list[self.current_map_index])
+
 
 
         self.scroll = [0, 0]
@@ -52,6 +61,7 @@ class Editor:
         self.clicking = False
         self.right_clicking = False
         self.shift = False
+        self.alt = False
 
         self.ongrid = True
 
@@ -129,6 +139,16 @@ class Editor:
                         if event.button == 5:
                             self.tile_group = (self.tile_group + 1) % len(self.tile_list)
                             self.tile_variant = 0
+                    
+                    if self.alt:# when pressing shift scroll thought tyle variants instead fo groups
+                        if event.button == 4:
+                            self.current_map_index = (self.current_map_index - 1) % len(self.maps_list)
+                            self.tilemap.load(self.maps_list[self.current_map_index])
+                            
+                        if event.button == 5:
+                            self.current_map_index = (self.current_map_index + 1) % len(self.maps_list)
+                            self.tilemap.load(self.maps_list[self.current_map_index])
+
 
                 if event.type == pygame.MOUSEBUTTONUP:
                                     if event.button == 1:
@@ -141,6 +161,13 @@ class Editor:
                     
 
                 if event.type == pygame.KEYDOWN:
+
+                    if self.alt:
+                        if event.key == pygame.K_o:
+                            self.tilemap.save(f'data/maps/maps{len(self.maps_list)}.json')
+                            #self.tilemap.save(self.maps_list[self.current_map_index])
+
+
                     if event.key == pygame.K_LEFT:
                         self.movement[0] = True
                     if event.key == pygame.K_RIGHT:
@@ -164,9 +191,11 @@ class Editor:
                     if event.key == pygame.K_g:
                         self.ongrid = not self.ongrid
                     if event.key == pygame.K_o:
-                        self.tilemap.save('map.json')
+                        self.tilemap.save(self.maps_list[self.current_map_index])
                     if event.key == pygame.K_t:
                         self.tilemap.autotile()
+                    if event.key == pygame.K_LALT:
+                        self.alt = True
 
 
 
@@ -191,6 +220,8 @@ class Editor:
                         self.shift = False
                     if event.key == pygame.K_RSHIFT:
                         self.shift = False
+                    if event.key == pygame.K_LALT:
+                        self.alt = False
 
 
 

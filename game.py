@@ -4,6 +4,8 @@ import os
 import sys
 import pygame 
 
+import glob 
+
 from scripts.utils import load_image, load_images, Animation
 from scripts.entities_copy import PhysicsEntity, Player
 from scripts.tilemap import Tilemap
@@ -50,7 +52,21 @@ class Game:
 
         self.scroll = [0, 0]
 
-        self.tilemap.load('map.json')
+        self.alt = False
+
+
+
+
+
+# creating a list of the file locations of the maps
+        self.maps_path = 'data/maps'
+        self.maps_list = list()
+        for filename in glob.iglob(f'{self.maps_path}/*'):
+            self.maps_list.append(filename)
+
+        #self.current_map = 'data/maps/map.json' # don't think i need this anymore
+        self.current_map_index = 0
+        self.tilemap.load(self.maps_list[self.current_map_index])
 
     # dafluffypotatoes tutorial code
     def run(self):
@@ -66,6 +82,8 @@ class Game:
             self.clouds.update()
             self.clouds.render(self.display, offset = render_scroll)
 
+
+
             self.tilemap.render(self.display, offset = render_scroll)
 
             self.player.update(self.tilemap, (self.player_movement[1] - self.player_movement[0], 0))
@@ -77,6 +95,21 @@ class Game:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+
+                    if self.alt:# when pressing shift scroll thought tyle variants instead fo groups
+                        if event.button == 4:
+                            self.current_map_index = (self.current_map_index - 1) % len(self.maps_list)
+                            self.tilemap.load(self.maps_list[self.current_map_index])
+                            
+                        if event.button == 5:
+                            self.current_map_index = (self.current_map_index + 1) % len(self.maps_list)
+                            self.tilemap.load(self.maps_list[self.current_map_index])
+ 
+
+
+
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT:
@@ -93,6 +126,8 @@ class Game:
                         self.player.velocity[1] = -3
                     if event.key == pygame.K_SPACE:
                         self.player.velocity[1] = -3
+                    if event.key == pygame.K_LALT:
+                        self.alt = True
 
 
                 if event.type == pygame.KEYUP:
@@ -104,6 +139,8 @@ class Game:
                         self.player_movement[0] = False
                     if event.key == pygame.K_d:
                         self.player_movement[1] = False
+                    if event.key == pygame.K_LALT:
+                        self.alt = False
 
             self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
             pygame.display.update()
