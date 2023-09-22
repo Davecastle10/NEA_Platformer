@@ -74,7 +74,8 @@ class Game:
     def run(self):
         while True:
             if self.paused == True:
-                self.display.blit()
+                print("helo")
+                self.display.blit((0,0,0))
                 # attempt to display text
                 #pygame.freetype.Font.render("Paused", fgcolor = (255,255,255,255), bgcolor = (0, 0, 0, 0), style = STYLE_DEFAULT )
 
