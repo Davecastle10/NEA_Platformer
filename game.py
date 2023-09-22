@@ -3,6 +3,7 @@
 import os
 import sys
 import pygame 
+from pygame import freetype
 
 import glob 
 
@@ -53,6 +54,7 @@ class Game:
         self.scroll = [0, 0]
 
         self.alt = False
+        self.paused = False
 
 
 
@@ -71,23 +73,35 @@ class Game:
     # dafluffypotatoes tutorial code
     def run(self):
         while True:
-            self.display.blit(self.assets['background'], (0, 0))
-
-
-            # scrolls camera to keep player in the center of the screen
-            self.scroll[0] += (self.player.frect().centerx - self.display.get_width() / 2 - self.scroll[0]) / 30
-            self.scroll[1] += (self.player.frect().centery - self.display.get_height() / 2 - self.scroll[1]) / 30
-            render_scroll = (int(self.scroll[0]), int(self.scroll[1]))
-
-            self.clouds.update()
-            self.clouds.render(self.display, offset = render_scroll)
+            if self.paused == True:
+                self.display.blit()
+                # attempt to display text
+                #pygame.freetype.Font.render("Paused", fgcolor = (255,255,255,255), bgcolor = (0, 0, 0, 0), style = STYLE_DEFAULT )
 
 
 
-            self.tilemap.render(self.display, offset = render_scroll)
 
-            self.player.update(self.tilemap, (self.player_movement[1] - self.player_movement[0], 0))
-            self.player.render(self.display, offset = render_scroll)
+
+
+
+            else:
+                self.display.blit(self.assets['background'], (0, 0))
+
+
+                # scrolls camera to keep player in the center of the screen
+                self.scroll[0] += (self.player.frect().centerx - self.display.get_width() / 2 - self.scroll[0]) / 30
+                self.scroll[1] += (self.player.frect().centery - self.display.get_height() / 2 - self.scroll[1]) / 30
+                render_scroll = (int(self.scroll[0]), int(self.scroll[1]))
+
+                self.clouds.update()
+                self.clouds.render(self.display, offset = render_scroll)
+
+
+
+                self.tilemap.render(self.display, offset = render_scroll)
+
+                self.player.update(self.tilemap, (self.player_movement[1] - self.player_movement[0], 0))
+                self.player.render(self.display, offset = render_scroll)
 
             #print(self.tilemap.tiles_around(self.player.pos)) # used for error checking on what tiles are within a 3x3 radius
 
@@ -128,6 +142,8 @@ class Game:
                         self.player.velocity[1] = -3
                     if event.key == pygame.K_LALT:
                         self.alt = True
+                    if event.key == pygame.K_ESCAPE:
+                        self.paused = not(self.paused)
 
 
                 if event.type == pygame.KEYUP:

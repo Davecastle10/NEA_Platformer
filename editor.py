@@ -111,7 +111,7 @@ class Editor:
             self.display.blit(current_tile_img, (5, 5))
 
 
-# add a pause feature and place a break oint by the pause so that when you pause it you can use the features of the break opitn and athe rest of the time you can just ignore the brakpoint.
+# add a pause feature and place a break point by the pause so that when you pause it you can use the features of the break opitn and athe rest of the time you can just ignore the brakpoint.
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
