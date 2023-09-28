@@ -58,7 +58,7 @@ class PhysicsEntity:
                 if frame_movement[1] > 0:# moving down
                     self.e_frect.bottom = rect.top
                     self.collisions['down'] = True
-                if frame_movement[1] < 0:# moving left
+                if frame_movement[1] <0:# moving left
                     self.e_frect.top = rect.bottom
                     self.collisions['up'] = True
                 self.pos[1] = self.e_frect.y
