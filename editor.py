@@ -160,14 +160,15 @@ class Editor:
                     
                     
 
-                if event.type == pygame.KEYDOWN:
+                if event.type == pygame.KEYDOWN:    
+#my code unless otherwise stated
 
                     if self.alt:
                         if event.key == pygame.K_o:
                             self.tilemap.save(f'data/maps/maps{len(self.maps_list)}.json')
                             #self.tilemap.save(self.maps_list[self.current_map_index])
 
-
+# dafluffy potatoes turtorial code unless otherwise stated
                     if event.key == pygame.K_LEFT:
                         self.movement[0] = True
                     if event.key == pygame.K_RIGHT:
@@ -190,12 +191,12 @@ class Editor:
                         self.shift = True
                     if event.key == pygame.K_g:
                         self.ongrid = not self.ongrid
-                    if event.key == pygame.K_o:
-                        self.tilemap.save(self.maps_list[self.current_map_index])
+                    if event.key == pygame.K_o:# mine
+                        self.tilemap.save(self.maps_list[self.current_map_index])#mine
                     if event.key == pygame.K_t:
                         self.tilemap.autotile()
-                    if event.key == pygame.K_LALT:
-                        self.alt = True
+                    if event.key == pygame.K_LALT:# mine
+                        self.alt = True# mine
 
 
 
