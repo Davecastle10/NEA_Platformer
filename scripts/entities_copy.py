@@ -45,14 +45,15 @@ class PhysicsEntity:
         for rect in tilemap.physics_rects_around(frect_pos):
             if self.e_frect.colliderect(rect):
                 if frame_movement[0] > 0:# if movong right
-                    self.e_frect.right = rect.left
+                    self.e_frect.right = rect.left# the problem wiyh the ovement is something to do with this
                     self.collisions['right'] = True
                 if frame_movement[0] <0:# if moving left
                     self.e_frect.left = rect.right
                     self.collisions['left'] = True
-                self.pos[0] = self.e_frect.x
+                self.pos[0] = self.e_frect.x# the problem wiyh the ovement is something to do with this
 
-        for rect in tilemap.physics_rects_around(frect_pos):
+
+        for rect in tilemap.physics_rects_around(frect_pos):# the problem wiyh the ovement is something to do with this
             if self.e_frect.colliderect(rect):
                 if frame_movement[1] > 0:# moving down
                     self.e_frect.bottom = rect.top
