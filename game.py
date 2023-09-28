@@ -16,7 +16,7 @@ from scripts.clouds import Clouds
 
 
 
-# dafluffypotatoes tutorial code
+# dafluffypotatoes tutorial code unless otherwise stated
 class Game:
     def __init__(self):
         pygame.init()
@@ -35,10 +35,10 @@ class Game:
             'large_decor': load_images('tiles/large_decor'),
             'stone': load_images('tiles/stone'),
             'player': load_image('entities/player/idle/00.png'),
-            'background': load_image('backgrounds/blue_sky_waves_big.png'),
+            'background': load_image('backgrounds/blue_sky_waves_big.png'),#mine
             'clouds' : load_images('clouds'),
-            'start_screen' : load_image('backgrounds/start_screen.png'),
-            'pause_screen' : load_image('backgrounds/pause_screen.png'),
+            'start_screen' : load_image('backgrounds/start_screen.png'),#mine
+            'pause_screen' : load_image('backgrounds/pause_screen.png'),#mine
             'player/idle' : Animation(load_images('entities/player/idle'), img_dur=6),# currently dont have extra images of r the idle animation but this is for when i have made them
             'player/jump' : Animation(load_images('entities/player/jump'), img_dur=4),
             'player/run' : Animation(load_images('entities/player/run'), img_dur=5),
@@ -55,6 +55,7 @@ class Game:
 
         self.scroll = [0, 0]
 
+# my code unless otherwise stated
         self.alt = False
         self.paused = False
         self.started = False
@@ -63,7 +64,7 @@ class Game:
 
 
 
-# creating a list of the file locations of the maps
+        # creating a list of the file locations of the maps
         self.maps_path = 'data/maps'
         self.maps_list = list()
         for filename in glob.iglob(f'{self.maps_path}/*'):
@@ -76,7 +77,7 @@ class Game:
     
     def run(self):
         while True:
-# my code
+
             if self.started == False:
                 self.display.blit(self.assets['start_screen'], (0,0))
 
@@ -103,7 +104,7 @@ class Game:
 
 
 
-# dafluffypotatoes tutorial code
+# dafluffypotatoes tutorial code unless otherwise stated
             else:
                 self.display.blit(self.assets['background'], (0, 0))
 
@@ -116,14 +117,14 @@ class Game:
                 self.clouds.update()
                 self.clouds.render(self.display, offset = render_scroll)
 
-
-
                 self.tilemap.render(self.display, offset = render_scroll)
 
                 self.player.update(self.tilemap, (self.player_movement[1] - self.player_movement[0], 0))
                 self.player.render(self.display, offset = render_scroll)
 
             #print(self.tilemap.tiles_around(self.player.pos)) # used for error checking on what tiles are within a 3x3 radius
+
+
 # all code from here down is mine unless otherwise stated
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
@@ -180,7 +181,7 @@ class Game:
                         if event.key == pygame.K_LALT:
                             self.alt = False
 
-# dafluffy potato tutorial code
+# dafluffy potato tutorial code unless otherwise stated
             self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
             pygame.display.update()
             self.clock.tick(60)
