@@ -42,9 +42,9 @@ class PhysicsEntity:
         
         # seperated collisions into x and y to make them easier
         
-        for rect in tilemap.physics_rects_around(frect_pos):
+        for rect in tilemap.physics_rects_around(self.pos):
             if self.e_frect.colliderect(rect):
-                if frame_movement[0] < 0:# if movong right
+                if frame_movement[0] < 0:# if movong right was > but it was moving the wrong way liek that for some reason
                     self.e_frect.right = rect.left# the problem wiyh the ovement is something to do with this
                     self.collisions['right'] = True
                 if frame_movement[0] > 0:# if moving left

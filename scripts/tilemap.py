@@ -18,6 +18,7 @@ AUTOTILE_MAP = {
     tuple(sorted([(1, 0), (-1, 0), (0, 1), (0, -1)])): 8,
 }
 # dafluffypotatoes tutorial code
+#NEIGHBOUR_OFFSETS = [(-1, 0), (-1, -1), (0,-1), (1, -1), (1,0), (0, 0), (-1, 1), (0, 1), (1, 1)] # list off all tiles in a 3x3 radius of the enitity and their offset in relation to the entiy measured in tiles
 NEIGHBOUR_OFFSETS = [(-1, 0), (-1, -1), (0,-1), (1, -1), (1,0), (0, 0), (-1, 1), (0, 1), (1, 1)] # list off all tiles in a 3x3 radius of the enitity and their offset in relation to the entiy measured in tiles
 PHYSICS_TILES = {'grass', 'stone'}
 AUTOTILE_TYPES = {'grass', 'stone'}

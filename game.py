@@ -37,6 +37,8 @@ class Game:
             'player': load_image('entities/player/idle/00.png'),
             'background': load_image('backgrounds/blue_sky_waves_big.png'),
             'clouds' : load_images('clouds'),
+            'start_screen' : load_image('backgrounds/start_screen.png'),
+            'pause_screen' : load_image('backgrounds/pause_screen.png'),
             'player/idle' : Animation(load_images('entities/player/idle'), img_dur=6),# currently dont have extra images of r the idle animation but this is for when i have made them
             'player/jump' : Animation(load_images('entities/player/jump'), img_dur=4),
             'player/run' : Animation(load_images('entities/player/run'), img_dur=5),
@@ -55,6 +57,7 @@ class Game:
 
         self.alt = False
         self.paused = False
+        self.started = False
 
 
 
@@ -70,21 +73,37 @@ class Game:
         self.current_map_index = 0
         self.tilemap.load(self.maps_list[self.current_map_index])
 
-    # dafluffypotatoes tutorial code
+    
     def run(self):
         while True:
-            if self.paused == True:
-                print("helo")
-                self.display.blit((0,0,0))
-                # attempt to display text
-                #pygame.freetype.Font.render("Paused", fgcolor = (255,255,255,255), bgcolor = (0, 0, 0, 0), style = STYLE_DEFAULT )
+# my code
+            if self.started == False:
+                self.display.blit(self.assets['start_screen'], (0,0))
+
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_RETURN:
+                            self.started = True
+
+            elif self.paused == True:
+                self.display.blit(self.assets['pause_screen'], (0,0))
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_ESCAPE:
+                            self.paused = not(self.paused)
+                    
 
 
 
 
 
-
-
+# dafluffypotatoes tutorial code
             else:
                 self.display.blit(self.assets['background'], (0, 0))
 
@@ -105,60 +124,63 @@ class Game:
                 self.player.render(self.display, offset = render_scroll)
 
             #print(self.tilemap.tiles_around(self.player.pos)) # used for error checking on what tiles are within a 3x3 radius
+# all code from here down is mine unless otherwise stated
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
 
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
+                    if event.type == pygame.MOUSEBUTTONDOWN:
 
-                if event.type == pygame.MOUSEBUTTONDOWN:
-
-                    if self.alt:# when pressing shift scroll thought tyle variants instead fo groups
-                        if event.button == 4:
-                            self.current_map_index = (self.current_map_index - 1) % len(self.maps_list)
-                            self.tilemap.load(self.maps_list[self.current_map_index])
-                            
-                        if event.button == 5:
-                            self.current_map_index = (self.current_map_index + 1) % len(self.maps_list)
-                            self.tilemap.load(self.maps_list[self.current_map_index])
- 
-
-
+                        if self.alt:# when pressing shift scroll thought tyle variants instead fo groups
+                            if event.button == 4:
+                                self.current_map_index = (self.current_map_index - 1) % len(self.maps_list)
+                                self.tilemap.load(self.maps_list[self.current_map_index])
+                                
+                            if event.button == 5:
+                                self.current_map_index = (self.current_map_index + 1) % len(self.maps_list)
+                                self.tilemap.load(self.maps_list[self.current_map_index])
+    
 
 
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_LEFT:
-                        self.player_movement[0] = True
-                    if event.key == pygame.K_RIGHT:
-                        self.player_movement[1] = True
-                    if event.key == pygame.K_UP:
-                        self.player.velocity[1] = -3
-                    if event.key == pygame.K_a:
-                        self.player_movement[0] = True
-                    if event.key == pygame.K_d:
-                        self.player_movement[1] = True
-                    if event.key == pygame.K_w:
-                        self.player.velocity[1] = -3
-                    if event.key == pygame.K_SPACE:
-                        self.player.velocity[1] = -3
-                    if event.key == pygame.K_LALT:
-                        self.alt = True
-                    if event.key == pygame.K_ESCAPE:
-                        self.paused = not(self.paused)
 
 
-                if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_LEFT:
-                        self.player_movement[0] = False
-                    if event.key == pygame.K_RIGHT:
-                        self.player_movement[1] = False
-                    if event.key == pygame.K_a:
-                        self.player_movement[0] = False
-                    if event.key == pygame.K_d:
-                        self.player_movement[1] = False
-                    if event.key == pygame.K_LALT:
-                        self.alt = False
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_LEFT:
+                            self.player_movement[0] = True
+                        if event.key == pygame.K_RIGHT:
+                            self.player_movement[1] = True
+                        if event.key == pygame.K_UP:
+                            self.player.velocity[1] = -3
+                        if event.key == pygame.K_a:
+                            self.player_movement[0] = True
+                        if event.key == pygame.K_d:
+                            self.player_movement[1] = True
+                        if event.key == pygame.K_w:
+                            self.player.velocity[1] = -3
+                        if event.key == pygame.K_SPACE:
+                            self.player.velocity[1] = -3
+                        if event.key == pygame.K_LALT:
+                            self.alt = True
+                        if event.key == pygame.K_ESCAPE:
+                            self.paused = not(self.paused)
+                        if event.key == pygame.K_RETURN:
+                            self.started = True
 
+
+                    if event.type == pygame.KEYUP:
+                        if event.key == pygame.K_LEFT:
+                            self.player_movement[0] = False
+                        if event.key == pygame.K_RIGHT:
+                            self.player_movement[1] = False
+                        if event.key == pygame.K_a:
+                            self.player_movement[0] = False
+                        if event.key == pygame.K_d:
+                            self.player_movement[1] = False
+                        if event.key == pygame.K_LALT:
+                            self.alt = False
+
+# dafluffy potato tutorial code
             self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
             pygame.display.update()
             self.clock.tick(60)
