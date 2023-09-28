@@ -24,13 +24,13 @@ class PhysicsEntity:
     def frect(self):
         return pygame.FRect(self.pos[0], self.pos[1], self.size[0], self.size[1])# rect values: left, top, width, height - left and top are the x and y coords of the top left corner of the rect and the width and height are used to create the rect as they provide the dimensions that need to be drawn from the top left corner
     
-    # dafluffypotatoes tutorial code
+# dafluffypotatoes tutorial code
     def set_action(self, action):
         if action != self.action:
             self.action = action
             self.animation = self.game.assets[self.type + '/' + self.action].copy()
 
-    # dafluffypotatoes tutorial code but is now over half mine
+# dafluffypotatoes tutorial code but is now over half mine
     
     def update(self, tilemap, movement_input=(0, 0)):
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
