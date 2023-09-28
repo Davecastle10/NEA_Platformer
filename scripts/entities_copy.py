@@ -2,7 +2,7 @@
 
 import pygame
 
-# dafluffypotatoes tutorial code
+# dafluffy potato tutorial code unless otherwise stated
 class PhysicsEntity:
     def __init__(self, game, e_type, pos, size):
         self.game = game
@@ -19,7 +19,8 @@ class PhysicsEntity:
         self.flip = False
         self.set_action('idle')
 
-    # dafluffypotatoes tutorial code
+# my code unless otherwise stated
+
     def frect(self):
         return pygame.FRect(self.pos[0], self.pos[1], self.size[0], self.size[1])# rect values: left, top, width, height - left and top are the x and y coords of the top left corner of the rect and the width and height are used to create the rect as they provide the dimensions that need to be drawn from the top left corner
     
@@ -34,6 +35,8 @@ class PhysicsEntity:
     def update(self, tilemap, movement_input=(0, 0)):
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
         frame_movement = (movement_input[0] + self.velocity[0], movement_input[1] + self.velocity[1])
+
+# my code unless otherwise stated
         self.pos[0] += frame_movement[0]
         self.pos[1] += frame_movement[1]
         self.e_frect.move_ip(frame_movement[0], frame_movement[1])
@@ -62,7 +65,9 @@ class PhysicsEntity:
                     self.e_frect.top = rect.bottom
                     self.collisions['up'] = True
                 self.pos[1] = self.e_frect.y
-        
+
+# dafluffy potato tutorial code unless otherwise stated
+#         
         if movement_input[0] > 0:# if move right then face right
             self.flip = False
         if movement_input[0] < 0:# if move left the flip to face left
