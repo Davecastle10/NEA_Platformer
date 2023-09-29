@@ -154,9 +154,9 @@ class Game:
                         
                         # this handles the double jumping
                         if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE:
-                            if self.player.collisions['down'] == True:# resest the jump counters if the player lands
-                                self.player.jump = False
-                                self.player.double_jump = False
+                            #if self.player.collisions['down'] == True:# resest the jump counters if the player lands
+                            #    self.player.jump = False
+                            #    self.player.double_jump = False
                             
                             if self.player.jump == False:# if the player hasnt jumped
                                 self.player.velocity[1] = -3# jump

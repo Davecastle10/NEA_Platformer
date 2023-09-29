@@ -98,6 +98,10 @@ class Player(PhysicsEntity):
     # dafluffypotatoes tutorial code
     def update(self, tilemap, movement_input):
         super().update(tilemap, movement_input = movement_input)
+
+        if self.collisions['down'] == True:# resest the jump counters if the player lands
+            self.jump = False
+            self.double_jump = False
         
 
         self.air_time += 1
