@@ -86,22 +86,23 @@ class PhysicsEntity:
         surf.blit(pygame.transform.flip(self.animation.img(), self.flip, False), (self.pos[0] - offset[0] + self.anim_offset[0], self.pos[1] - offset[1] + self.anim_offset[1])) # sel.flip is the x axis flip and Fasle is the y-axis flip option, but flipping in the y - axis is verry reare so most of the time it is not needed
 
 
-# dafluffypotatoes tutorial code
+# dafluffypotatoes tutorial code unless otherwise stated
 class Player(PhysicsEntity):
     def __init__(self, game, pos, size):
         super().__init__(game, 'player', pos, size)
         self.air_time = 0
 
-        self.jump = False
-        self.double_jump = False
+        self.jump = False# my code
+        self.double_jump = False# my code
 
     # dafluffypotatoes tutorial code
     def update(self, tilemap, movement_input):
         super().update(tilemap, movement_input = movement_input)
 
+        # my code
         if self.collisions['down'] == True:# resest the jump counters if the player lands
-            self.jump = False
-            self.double_jump = False
+            self.jump = False# my code
+            self.double_jump = False# my code
         
 
         self.air_time += 1
