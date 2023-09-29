@@ -11,15 +11,16 @@ class PhysicsEntity:
         self.size = size
         self.velocity = [0, 0] # x velociyt then y velocity
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
-
-        self.e_frect = pygame.FRect(self.pos[0], self.pos[1], self.size[0], self.size[1])
-
         self.action = ''
         self.anim_offset = (-3, 0) # so that the entitity img can overflow for the animations, can be set to (-3, -3) but then the player images need adjusting
         self.flip = False
         self.set_action('idle')
 
-# my code unless otherwise stated
+# my code unless otherwise stated        
+        self.e_frect = pygame.FRect(self.pos[0], self.pos[1], self.size[0], self.size[1])
+        self.jump = False
+        self.double_jump = False
+
 
     def frect(self):
         return pygame.FRect(self.pos[0], self.pos[1], self.size[0], self.size[1])# rect values: left, top, width, height - left and top are the x and y coords of the top left corner of the rect and the width and height are used to create the rect as they provide the dimensions that need to be drawn from the top left corner
@@ -90,6 +91,10 @@ class Player(PhysicsEntity):
     def __init__(self, game, pos, size):
         super().__init__(game, 'player', pos, size)
         self.air_time = 0
+
+        self.jump = False
+        self.double_jump = False
+
     # dafluffypotatoes tutorial code
     def update(self, tilemap, movement_input):
         super().update(tilemap, movement_input = movement_input)

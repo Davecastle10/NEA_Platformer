@@ -143,24 +143,29 @@ class Game:
                                 self.tilemap.load(self.maps_list[self.current_map_index])
     
 
-
-
-
                     if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_LEFT:
+                        # if player wants to go left
+                        if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                             self.player_movement[0] = True
-                        if event.key == pygame.K_RIGHT:
+                        
+                        # if the player wants to go right
+                        if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                             self.player_movement[1] = True
-                        if event.key == pygame.K_UP:
-                            self.player.velocity[1] = -3
-                        if event.key == pygame.K_a:
-                            self.player_movement[0] = True
-                        if event.key == pygame.K_d:
-                            self.player_movement[1] = True
-                        if event.key == pygame.K_w:
-                            self.player.velocity[1] = -3
-                        if event.key == pygame.K_SPACE:
-                            self.player.velocity[1] = -3
+                        
+                        # this handles the double jumping
+                        if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE:
+                            if self.player.collisions['down'] == True:# resest the jump counters if the player lands
+                                self.player.jump = False
+                                self.player.double_jump = False
+                            
+                            if self.player.jump == False:# if the player hasnt jumped
+                                self.player.velocity[1] = -3# jump
+                                self.player.jump = True# can't jump agin until they land
+
+                            elif self.player.double_jump == False:# if the player hasnt double jumped
+                                self.player.velocity[1] = -3# double jump
+                                self.player.double_jump = True# cant jump again until the player touches the ground
+
                         if event.key == pygame.K_LALT:
                             self.alt = True
                         if event.key == pygame.K_ESCAPE:
@@ -170,14 +175,14 @@ class Game:
 
 
                     if event.type == pygame.KEYUP:
-                        if event.key == pygame.K_LEFT:
+                        # player wants to stop going left
+                        if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                             self.player_movement[0] = False
-                        if event.key == pygame.K_RIGHT:
+                        
+                        # player wanst to stop going right
+                        if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                             self.player_movement[1] = False
-                        if event.key == pygame.K_a:
-                            self.player_movement[0] = False
-                        if event.key == pygame.K_d:
-                            self.player_movement[1] = False
+                        
                         if event.key == pygame.K_LALT:
                             self.alt = False
 
