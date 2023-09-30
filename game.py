@@ -85,9 +85,10 @@ class Game:
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_RETURN:
-                            self.started = True
+                    
+                    if True in pygame.key.get_pressed():# if any key is pressed, start the game
+                        self.started = True
+
 
             elif self.paused == True:
                 self.display.blit(self.assets['pause_screen'], (0,0))
