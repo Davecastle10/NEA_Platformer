@@ -61,10 +61,10 @@ class PhysicsEntity:
         for rect in tilemap.physics_rects_around(self.pos):
             if self.e_frect.colliderect(rect):
                 if frame_movement[0] < 0:# if movong right was > but it was moving the wrong way liek that for some reason
-                    #self.e_frect.right = rect.left# the problem wiyh the ovement is something to do with this
+                    self.e_frect.right = rect.left# the problem wiyh the ovement is something to do with this
                     self.collisions['right'] = True
                 elif frame_movement[0] > 0:# if moving left
-                    #self.e_frect.left = rect.right
+                    self.e_frect.left = rect.right
                     self.collisions['left'] = True
                 self.pos[0] = self.e_frect.x# the problem wiyh the ovement is something to do with this
 
@@ -72,10 +72,10 @@ class PhysicsEntity:
         for rect in tilemap.physics_rects_around(self.pos):# the problem wiyh the ovement is something to do with this
             if self.e_frect.colliderect(rect):
                 if frame_movement[1] > 0:# moving down
-                    #self.e_frect.bottom = rect.top
+                    self.e_frect.bottom = rect.top
                     self.collisions['down'] = True
                 elif frame_movement[1] < 0:# moving left
-                    #self.e_frect.top = rect.bottom
+                    self.e_frect.top = rect.bottom
                     self.collisions['up'] = True
                 self.pos[1] = self.e_frect.y
 
