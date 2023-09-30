@@ -37,7 +37,7 @@ class Game:
             'player': load_image('entities/player/idle/00.png'),
             'background': load_image('backgrounds/blue_sky_waves_big.png'),#mine
             'clouds' : load_images('clouds'),
-            'start_screen' : load_image('backgrounds/start_screen.png'),#mine
+            'start_screen' : load_image('backgrounds/start_screen_v2.png'),#mine
             'pause_screen' : load_image('backgrounds/pause_screen.png'),#mine
             'player/idle' : Animation(load_images('entities/player/idle'), img_dur=6),# currently dont have extra images of r the idle animation but this is for when i have made them
             'player/jump' : Animation(load_images('entities/player/jump'), img_dur=4),
