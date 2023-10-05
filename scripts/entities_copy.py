@@ -64,7 +64,7 @@ class PhysicsEntity:
                     #self.e_frect.right = rect.left# the problem wiyh the ovement is something to do with this
                     
                     if self.e_frect.right == rect.left:# add something that locks the players axis coordss if they collide with something no that axis
-
+                        print('work in progress')
 
 
                     self.collisions['right'] = True
