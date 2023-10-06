@@ -8,3 +8,7 @@ now i have implemnetd the level editor properly, i need to go back and optimise 
 Once that is done i can go in and add a gui menu for the game (probably with tkinter), and then i can add in the question system, enemies and combat, i think the plan will also be to make a gui for the level editor, so that the players can make their own levels and add in their own questions. And if i get all of that done, i will try to add in procedural level generation.
 
 got to 3:13:32 in tutorial
+
+
+
+my name for George's game "Balthazar's Bizarre Amphistylar Voussoir Alcazar Bazaar of Commissaris Babar's Liquidambar Grimoires"
