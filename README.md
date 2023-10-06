@@ -11,4 +11,4 @@ got to 3:13:32 in tutorial
 
 
 
-my name for George's game "Balthazar's Bizarre Amphistylar Voussoir Alcazar Bazaar of Commissaris Babar's Liquidambar Grimoires"
+my name for George's game "Balthazar's Bizarre Amphistylar Voussoir Alcazar Bazaar of Commissaris Babar's Liquidambar Grimoires" and will be added as the name of a shop or map in the game and i should add a charachter 'Balthazar' and 'Commissaris Babar'
