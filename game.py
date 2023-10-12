@@ -146,12 +146,14 @@ class Game:
 
                     if event.type == pygame.KEYDOWN:
                         # if player wants to go left
-                        if event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                            self.player_movement[0] = True
+                        if self.player.collisions['left'] == False:
+                            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
+                                self.player_movement[0] = True
                         
                         # if the player wants to go right
-                        if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                            self.player_movement[1] = True
+                        if self.player.collisions['right'] == False:
+                            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+                                self.player_movement[1] = True
                         
                         # this handles the double jumping
                         if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE:

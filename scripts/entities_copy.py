@@ -38,6 +38,9 @@ class PhysicsEntity:
         frame_movement = (movement_input[0] + self.velocity[0], movement_input[1] + self.velocity[1])
 
 # my code unless otherwise stated
+
+        initial_pos = self.pos
+
         self.pos[0] += frame_movement[0]
         self.pos[1] += frame_movement[1]
         self.e_frect.move_ip(frame_movement[0], frame_movement[1])
@@ -60,20 +63,28 @@ class PhysicsEntity:
         
         for rect in tilemap.physics_rects_around(self.pos):
             if self.e_frect.colliderect(rect):
-                if frame_movement[0] < 0:# if movong right was > but it was moving the wrong way liek that for some reason
+                if frame_movement[0] > 0:# if movong right was > but it was moving the wrong way liek that for some reason
+                    print(frame_movement[0])
+                    
                     #self.e_frect.right = rect.left# the problem wiyh the ovement is something to do with this
                     
                     if self.e_frect.right == rect.left:# add something that locks the players axis coordss if they collide with something no that axis
                         print('work in progress')
-
-
                     self.collisions['right'] = True
-                elif frame_movement[0] > 0:# if moving left
-                    #self.e_frect.left = rect.right
-                    self.collisions['left'] = True
+
+
+                elif frame_movement[0] <  0:# if moving left
+                    if frame_movement[0] < 0:# if movong right was > but it was moving the wrong way liek that for some reason
+                        print(frame_movement[0])
+                        #self.e_frect.left = rect.right
+                        self.collisions['left'] = True
+
                 self.pos[0] = self.e_frect.x# the problem wiyh the ovement is something to do with this
 
+        #if self.collisions['right'] == True or self.collisions['left'] == True:
+        #    self.pos[0] = initial_pos[0]
 
+             
         for rect in tilemap.physics_rects_around(self.pos):# the problem wiyh the ovement is something to do with this
             if self.e_frect.colliderect(rect):
                 if frame_movement[1] > 0:# moving down
@@ -83,6 +94,8 @@ class PhysicsEntity:
                     self.e_frect.top = rect.bottom
                     self.collisions['up'] = True
                 self.pos[1] = self.e_frect.y
+
+
 
 # dafluffy potato tutorial code unless otherwise stated
 #         
