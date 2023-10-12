@@ -66,7 +66,7 @@ class PhysicsEntity:
                 if frame_movement[0] > 0:# if movong right was > but it was moving the wrong way liek that for some reason
                     print(frame_movement[0])
                     
-                    #self.e_frect.right = rect.left# the problem wiyh the ovement is something to do with this
+                    self.e_frect.right = rect.left# the problem wiyh the ovement is something to do with this
                     
                     if self.e_frect.right == rect.left:# add something that locks the players axis coordss if they collide with something no that axis
                         print('work in progress')
@@ -76,7 +76,7 @@ class PhysicsEntity:
                 elif frame_movement[0] <  0:# if moving left
                     if frame_movement[0] < 0:# if movong right was > but it was moving the wrong way liek that for some reason
                         print(frame_movement[0])
-                        #self.e_frect.left = rect.right
+                        self.e_frect.left = rect.right
                         self.collisions['left'] = True
 
                 self.pos[0] = self.e_frect.x# the problem wiyh the ovement is something to do with this
@@ -88,7 +88,7 @@ class PhysicsEntity:
         for rect in tilemap.physics_rects_around(self.pos):# the problem wiyh the ovement is something to do with this
             if self.e_frect.colliderect(rect):
                 if frame_movement[1] > 0:# moving down
-                    self.e_frect.bottom = rect.top
+                    #self.e_frect.bottom = rect.top
                     self.collisions['down'] = True
                 elif frame_movement[1] < 0:# moving left
                     self.e_frect.top = rect.bottom
@@ -104,7 +104,7 @@ class PhysicsEntity:
         if movement_input[0] < 0:# if move left the flip to face left
             self.flip = True
 
-        self.velocity[1] = min(5, self.velocity[1] + 0.1) # starts with with a down vel of 1 and increments by 0. until it reaches 5 which is terminal velocity
+        #self.velocity[1] = min(5, self.velocity[1] + 0.1) # starts with with a down vel of 1 and increments by 0. until it reaches 5 which is terminal velocity
 
         if self.collisions['down'] or self.collisions['up']:
             self.velocity[1] = 0
