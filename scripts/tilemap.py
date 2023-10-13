@@ -19,7 +19,9 @@ AUTOTILE_MAP = {
 }
 # dafluffypotatoes tutorial code
 #NEIGHBOUR_OFFSETS = [(-1, 0), (-1, -1), (0,-1), (1, -1), (1,0), (0, 0), (-1, 1), (0, 1), (1, 1)] # list off all tiles in a 3x3 radius of the enitity and their offset in relation to the entiy measured in tiles
-NEIGHBOUR_OFFSETS = [(-1, 0), (-1, -1), (0,-1), (1, -1), (1,0), (0, 0), (-1, 1), (0, 1), (1, 1)] # list off all tiles in a 3x3 radius of the enitity and their offset in relation to the entiy measured in tiles
+NEIGHBOUR_OFFSETS_X = [(-1, 0), (0, 0), (1,0)] # list of tiles in a line length 3 that passes horizontaly throught the player and their offset in relation to the entiy measured in tiles
+NEIGHBOUR_OFFSETS_Y = [(-1, -1), (0,-1), (1, -1), (0, 0), (-1, 1), (0, 1), (1, 1)] # list off all tiles in a 3x3 radius of the enitity and that arent horizontal left or right of the player without being above/below the player and their offset in relation to the entiy measured in tiles
+
 PHYSICS_TILES = {'grass', 'stone'}
 AUTOTILE_TYPES = {'grass', 'stone'}
 
@@ -33,15 +35,39 @@ class Tilemap:
 
 
     # dafluffypotatoes tutorial code
-    def tiles_around(self, pos):
+    def tiles_around(self, pos):# origianl
         tiles = []
         tile_loc = (int(pos[0] // self.tile_size), int(pos[1] // self.tile_size)) # converts pixel pos to grid pos
-        for offset in NEIGHBOUR_OFFSETS:
+        for offset in NEIGHBOUR_OFFSETS_X:
             check_loc = str(tile_loc[0] + offset[0]) + ';' + str(tile_loc[1] + offset[1])# the weird bit is the way that tile location is stroed as a strning so that they can be later stored in a .json file for the level editor
             if check_loc in self.tilemap:
                 tiles.append(self.tilemap[check_loc])
         return tiles
     
+
+# slightly altered to to only list tile horizontal to player
+    def tiles_around_x(self, pos):
+        tiles = []
+        tile_loc = (int(pos[0] // self.tile_size), int(pos[1] // self.tile_size)) # converts pixel pos to grid pos
+        for offset in NEIGHBOUR_OFFSETS_X:
+            check_loc = str(tile_loc[0] + offset[0]) + ';' + str(tile_loc[1] + offset[1])# the weird bit is the way that tile location is stroed as a strning so that they can be later stored in a .json file for the level editor
+            if check_loc in self.tilemap:
+                tiles.append(self.tilemap[check_loc])
+        return tiles
+    
+# slightly altered to only list tiles vertical to player
+    def tiles_around_y(self, pos):
+        tiles = []
+        tile_loc = (int(pos[0] // self.tile_size), int(pos[1] // self.tile_size)) # converts pixel pos to grid pos
+        for offset in NEIGHBOUR_OFFSETS_Y:
+            check_loc = str(tile_loc[0] + offset[0]) + ';' + str(tile_loc[1] + offset[1])# the weird bit is the way that tile location is stroed as a strning so that they can be later stored in a .json file for the level editor
+            if check_loc in self.tilemap:
+                tiles.append(self.tilemap[check_loc])
+        return tiles
+
+
+
+
     # dafluffypotatoes tutorial code
     def save(self, path):
         f = open(path, 'w')
@@ -59,7 +85,23 @@ class Tilemap:
         self.offgrid_tiles = map_data['offgrid']
 
     # dafluffypotatoes tutorial code
-    def physics_rects_around(self, pos):
+    def physics_rects_around_x(self, pos):# only tile horizontal to player
+        rects = []
+        for tile in self.tiles_around_x(pos):
+            if tile['type'] in PHYSICS_TILES:
+                #
+                rects.append(pygame.Rect(tile['pos'][0] * self.tile_size, tile['pos'][1] * self.tile_size, self.tile_size, self.tile_size))
+        return rects
+    
+    def physics_rects_around_y(self, pos):# only tiles vertical to player
+        rects = []
+        for tile in self.tiles_around_y(pos):
+            if tile['type'] in PHYSICS_TILES:
+                #
+                rects.append(pygame.Rect(tile['pos'][0] * self.tile_size, tile['pos'][1] * self.tile_size, self.tile_size, self.tile_size))
+        return rects
+    
+    def physics_rects_around(self, pos):# original version
         rects = []
         for tile in self.tiles_around(pos):
             if tile['type'] in PHYSICS_TILES:

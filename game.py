@@ -169,6 +169,9 @@ class Game:
                                 self.player.velocity[1] = -3# double jump
                                 self.player.double_jump = True# cant jump again until the player touches the ground
 
+                            elif self.player.wall_jump == True:
+                                self.player.velocity[1] = -3
+
                         if event.key == pygame.K_LALT:
                             self.alt = True
                         if event.key == pygame.K_ESCAPE:

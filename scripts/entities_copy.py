@@ -15,6 +15,7 @@ class PhysicsEntity:
         self.anim_offset = (-3, 0) # so that the entitity img can overflow for the animations, can be set to (-3, -3) but then the player images need adjusting
         self.flip = False
         self.set_action('idle')
+        self.previous_pos = ()
 
 # my code unless otherwise stated        
         self.e_frect = pygame.FRect(self.pos[0], self.pos[1], self.size[0], self.size[1])
@@ -39,7 +40,7 @@ class PhysicsEntity:
 
 # my code unless otherwise stated
 
-        initial_pos = self.pos
+        self.previous_pos = self.pos
 
         self.pos[0] += frame_movement[0]
         self.pos[1] += frame_movement[1]
@@ -61,7 +62,7 @@ class PhysicsEntity:
 
 
         
-        for rect in tilemap.physics_rects_around(self.pos):
+        for rect in tilemap.physics_rects_around_x(self.pos):
             if self.e_frect.colliderect(rect):
                 if frame_movement[0] > 0:# if movong right was > but it was moving the wrong way liek that for some reason
                     print(frame_movement[0])
@@ -85,10 +86,10 @@ class PhysicsEntity:
         #    self.pos[0] = initial_pos[0]
 
              
-        for rect in tilemap.physics_rects_around(self.pos):# the problem wiyh the ovement is something to do with this
+        for rect in tilemap.physics_rects_around_y(self.pos):# the problem wiyh the ovement is something to do with this
             if self.e_frect.colliderect(rect):
                 if frame_movement[1] > 0:# moving down
-                    #self.e_frect.bottom = rect.top
+                    self.e_frect.bottom = rect.top
                     self.collisions['down'] = True
                 elif frame_movement[1] < 0:# moving left
                     self.e_frect.top = rect.bottom
@@ -104,7 +105,7 @@ class PhysicsEntity:
         if movement_input[0] < 0:# if move left the flip to face left
             self.flip = True
 
-        #self.velocity[1] = min(5, self.velocity[1] + 0.1) # starts with with a down vel of 1 and increments by 0. until it reaches 5 which is terminal velocity
+        self.velocity[1] = min(5, self.velocity[1] + 0.1) # starts with with a down vel of 1 and increments by 0. until it reaches 5 which is terminal velocity
 
         if self.collisions['down'] or self.collisions['up']:
             self.velocity[1] = 0
@@ -124,6 +125,7 @@ class Player(PhysicsEntity):
 
         self.jump = False# my code
         self.double_jump = False# my code
+        self.wall_jump = False# False means not allowed to wall jump, whereas as True = allowed to wall jump
 
     # dafluffypotatoes tutorial code
     def update(self, tilemap, movement_input):
@@ -133,8 +135,16 @@ class Player(PhysicsEntity):
         if self.collisions['down'] == True:# resest the jump counters if the player lands
             self.jump = False# my code
             self.double_jump = False# my code
-        
+            self.wall_jump = False# my code
 
+        elif self.collisions['left'] == False and self.collisions['right'] == False:
+            self.wall_jump = False
+
+        # my code
+        if self.collisions['down'] == False and self.collisions['right'] == True or self.collisions['left'] == True:
+            self.wall_jump = True
+        
+# not my code i think
         self.air_time += 1
         if self.collisions['down']: # if not touching the ground
             self.air_time = 0
