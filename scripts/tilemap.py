@@ -20,7 +20,7 @@ AUTOTILE_MAP = {
 # dafluffypotatoes tutorial code
 #NEIGHBOUR_OFFSETS = [(-1, 0), (-1, -1), (0,-1), (1, -1), (1,0), (0, 0), (-1, 1), (0, 1), (1, 1)] # list off all tiles in a 3x3 radius of the enitity and their offset in relation to the entiy measured in tiles
 NEIGHBOUR_OFFSETS_X = [(-1, 0), (0, 0), (1,0)] # list of tiles in a line length 3 that passes horizontaly throught the player and their offset in relation to the entiy measured in tiles
-NEIGHBOUR_OFFSETS_Y = [(-1, -1), (0,-1), (1, -1), (0, 0), (-1, 1), (0, 1), (1, 1)] # list off all tiles in a 3x3 radius of the enitity and that arent horizontal left or right of the player without being above/below the player and their offset in relation to the entiy measured in tiles
+NEIGHBOUR_OFFSETS_Y = [ (0,-1), (0, 0), (0, 1)] # list off all tiles in a 3x3 radius of the enitity and that arent horizontal left or right of the player without being above/below the player and their offset in relation to the entiy measured in tiles
 
 PHYSICS_TILES = {'grass', 'stone'}
 AUTOTILE_TYPES = {'grass', 'stone'}
