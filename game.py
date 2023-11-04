@@ -11,6 +11,7 @@ from scripts.utils import load_image, load_images, Animation
 from scripts.entities_copy import PhysicsEntity, Player
 from scripts.tilemap import Tilemap
 from scripts.clouds import Clouds
+from scripts.questions import Question
 
 
 
