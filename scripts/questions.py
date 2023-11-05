@@ -103,9 +103,17 @@ class Question_set:
         for i in self.question_set['question_set']:
             self.question_list.append(Question(i['question'], i['correct_answer'], i['incorrect_answer_1'], i['incorrect_answer_2'], i['incorrect_answer_3']), i['question_difficulty'])
 
-        print(self.question_list[0].question_difficulty)
+        
 
     def get_question(self, question_index):
+        """method that returns the question string for a question
+
+        Args:
+            question_index (int): index from  of the question that you want from the list of questions in the question set
+
+        Returns:
+            string: a string that contains the question
+        """        
         return self.question_list[question_index].question
 
 
