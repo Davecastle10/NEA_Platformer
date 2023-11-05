@@ -76,8 +76,15 @@ class Question:
     
 
 class Question_set:
+    """A class that inherits from Question, to make a an object for a set of questions, where each question is another object of the Question class
+    """    
     def __init__(self, Question, desired_question_set):
+        """The constructor function for the Question_set class
 
+        Args:
+            Question (Inheritance): The inheritance from the Question class
+            desired_question_set (int): the index from 0 of the question json file in the Questions folder
+        """        
         self.question_sets_list = []# a list that will contingt the names of the json files that the question sts are in
         self.questions_path = 'data/questions'# the path to the folder containing the question set json files
         for filename in glob.iglob(f'{self.questions_path}/*'):# adds the names of the json files to the question_sets_list list
@@ -98,5 +105,9 @@ class Question_set:
 
         print(self.question_list[0].question_difficulty)
 
-    def get_question(self, ):
-        pass
+    def get_question(self, question_index):
+        return self.question_list[question_index].question
+
+
+
+
