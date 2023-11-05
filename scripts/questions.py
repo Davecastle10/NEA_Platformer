@@ -31,7 +31,7 @@ import json
 class Question:
     """The class for a question, that supports the question itself alongside one correct and three incorrect answers
     """    
-    def __init__(self, question_input, answer_correct, answer_false_1, answer_false_2, answer_false_3, question_difficulty):
+    def __init__(self, question_input, answer_correct, answer_false_1, answer_false_2, answer_false_3, input_question_difficulty):
         """the constructor function that takes in the questionn and the answers
 
         Args:
@@ -47,7 +47,7 @@ class Question:
         self.incorrect_answer_1 = answer_false_1
         self.incorrect_answer_2 = answer_false_2
         self.incorrect_answer_3 = answer_false_3
-        self.question_difficulty = question_difficulty
+        self.question_difficulty = input_question_difficulty
 
     def answer_attempt(self, selected_answer):
         """takes the the string of the answer chosen and return True if the answer is correct 
@@ -75,14 +75,13 @@ class Question:
         return self.correct_answer
     
 
-class Question_set:
+class Question_set(Question):
     """A class that inherits from Question, to make a an object for a set of questions, where each question is another object of the Question class
     """    
-    def __init__(self, Question, desired_question_set):
+    def __init__(self, desired_question_set):
         """The constructor function for the Question_set class
 
         Args:
-            Question (Inheritance): The inheritance from the Question class
             desired_question_set (int): the index from 0 of the question json file in the Questions folder
         """        
         self.question_sets_list = []# a list that will contingt the names of the json files that the question sts are in
@@ -101,6 +100,7 @@ class Question_set:
         self.question_list = []
 
         for i in self.question_set['question_set']:
+            print(i)
             self.question_list.append(Question(i['question'], i['correct_answer'], i['incorrect_answer_1'], i['incorrect_answer_2'], i['incorrect_answer_3']), i['question_difficulty'])
 
         
@@ -118,4 +118,6 @@ class Question_set:
 
 
 
+p1 = Question_set(1)
 
+print(p1.question_list)

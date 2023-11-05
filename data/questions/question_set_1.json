@@ -5,7 +5,7 @@
             "incorrect_answer_1": "3",
             "incorrect_answer_2": "5",
             "incorrect_answer_3": "1",
-            "question_difficulty": 1
+            "question_difficulty": "1"
         },
 
         {
@@ -14,7 +14,7 @@
             "incorrect_answer_1": "4",
             "incorrect_answer_2": "6",
             "incorrect_answer_3": "7",
-            "question_difficulty": 1
+            "question_difficulty": "1"
         },
 
         {
@@ -23,7 +23,7 @@
             "incorrect_answer_1": "3",
             "incorrect_answer_2": "8",
             "incorrect_answer_3": "2",
-            "question_difficulty": 2
+            "question_difficulty": "2"
         },
         
         {
@@ -32,7 +32,7 @@
             "incorrect_answer_1": "512",
             "incorrect_answer_2": "256",
             "incorrect_answer_3": "2048",
-            "question_difficulty": 3
+            "question_difficulty": "3"
         }
     ]
 }
