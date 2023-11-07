@@ -31,7 +31,7 @@ import json
 class Question:
     """The class for a question, that supports the question itself alongside one correct and three incorrect answers
     """    
-    def __init__(self, question_input, answer_correct, answer_false_1, answer_false_2, answer_false_3, input_question_difficulty):
+    def __init__(self, question_input, answer_correct, answer_false_1, answer_false_2, answer_false_3):
         """the constructor function that takes in the questionn and the answers
 
         Args:
@@ -47,7 +47,7 @@ class Question:
         self.incorrect_answer_1 = answer_false_1
         self.incorrect_answer_2 = answer_false_2
         self.incorrect_answer_3 = answer_false_3
-        self.question_difficulty = input_question_difficulty
+        #self.question_difficulty = input_question_difficulty
 
     def answer_attempt(self, selected_answer):
         """takes the the string of the answer chosen and return True if the answer is correct 
@@ -101,9 +101,7 @@ class Question_set(Question):
 
         for i in self.question_set['question_set']:
             print(i)
-            self.question_list.append(Question(i['question'], i['correct_answer'], i['incorrect_answer_1'], i['incorrect_answer_2'], i['incorrect_answer_3']), i['question_difficulty'])
-
-        
+            self.question_list.append(Question(i['question'], i['correct_answer'], i['incorrect_answer_1'], i['incorrect_answer_2'], i['incorrect_answer_3']))
 
     def get_question(self, question_index):
         """method that returns the question string for a question
@@ -118,6 +116,6 @@ class Question_set(Question):
 
 
 
-p1 = Question_set(1)
+p1 = Question_set(0)
 
 print(p1.question_list)
