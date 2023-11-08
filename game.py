@@ -4,6 +4,7 @@ import os
 import sys
 import pygame 
 from pygame import freetype
+import pygame_gui
 
 import glob 
 
@@ -17,14 +18,21 @@ from scripts.questions import Question, Question_set
 
 
 
+
 # dafluffypotatoes tutorial code unless otherwise stated
 class Game:
     def __init__(self):
         pygame.init()
 
+        self.display_x_size = 640
+        self.display_y_size = 380
+
         pygame.display.set_caption("NEA Platformer")
-        self.screen = pygame.display.set_mode((1280,760))
-        self.display = pygame.Surface((640, 380))
+        self.screen = pygame.display.set_mode((self.display_x_size * 2, self.display_y_size * 2))
+        self.display = pygame.Surface((self.display_x_size, self.display_y_size))
+
+        self.manager = pygame_gui.UIManager((self.display_x_size * 2, self.display_y_size * 2))
+        self.hello_button_pressed = False
 
 
         self.clock = pygame.time.Clock()
@@ -75,9 +83,16 @@ class Game:
         self.current_map_index = 0
         self.tilemap.load(self.maps_list[self.current_map_index])
 
+
+        #self.hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((self.display_x_size - 50, self.display_y_size - 25), (100, 50)),
+        #                                     text='Say Hello',
+        #                                     manager=self.manager)
+        
+        
     
     def run(self):
         while True:
+            time_delta = self.clock.tick(60)
 
             if self.started == False:
                 self.display.blit(self.assets['start_screen'], (0,0))
@@ -127,7 +142,23 @@ class Game:
             #print(self.tilemap.tiles_around(self.player.pos)) # used for error checking on what tiles are within a 3x3 radius
 
 
+
+
+
+
+
 # all code from here down is mine unless otherwise stated
+                
+                if self.hello_button_pressed == False:
+                    self.hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((self.display_x_size - 50, self.display_y_size - 25), (100, 50)),
+                                                text='Say Hello',
+                                                manager=self.manager)
+
+
+
+
+
+
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         pygame.quit()
@@ -192,10 +223,19 @@ class Game:
                         
                         if event.key == pygame.K_LALT:
                             self.alt = False
+                    
+                    if event.type == pygame_gui.UI_BUTTON_PRESSED:
+                        if event.ui_element == self.hello_button:
+                            print('Hello World!')
+                            self.hello_button_pressed == True
 
+                    self.manager.process_events(event)
+
+            self.manager.update(time_delta)
 # dafluffy potato tutorial code unless otherwise stated
             self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
+            self.manager.draw_ui(self.screen)
             pygame.display.update()
-            self.clock.tick(60)
+            #self.clock.tick(60)
 
 Game().run()
