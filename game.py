@@ -53,6 +53,7 @@ class Game:
             'player/run' : Animation(load_images('entities/player/run'), img_dur=5),
             'player/slide' : Animation(load_images('entities/player/slide'), img_dur=5),# no images yet
             'player/wall_slide' : Animation(load_images('entities/player/wall_slide'), img_dur=5),# no images yet
+            'question_screen' : load_image('backgrounds/question_format.png')
         }
         
         self.clouds = Clouds(self.assets['clouds'], count = 16)
@@ -68,6 +69,7 @@ class Game:
         self.alt = False
         self.paused = False
         self.started = False
+        self.showing_questions = True
 
 
 
@@ -104,6 +106,16 @@ class Game:
                     
                     if True in pygame.key.get_pressed():# if any key is pressed, start the game
                         self.started = True
+
+            elif self.showing_questions == True:
+                self.display.blit(self.assets['question_screen'], (0,0))
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_SPACE:
+                            self.showing_questions = not(self.showing_questions)
 
 
             elif self.paused == True:
