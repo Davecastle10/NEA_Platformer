@@ -7,27 +7,6 @@ import json
 
 # I learnt how to use docstrings before making this file, so everything in this file will have docstrings in it
 
-
-
-# creating a list of the file locations of the maps
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class Question:
     """The class for a question, that supports the question itself alongside one correct and three incorrect answers
     """    
@@ -93,13 +72,9 @@ class Question_set(Question):
 
         f = open(self.question_sets_list[self.question_sets_list_index])
         self.question_set = json.load(f)
-
-        #for i in self.question_set['question_set']:
-        #    print(i["question"])
-
         self.question_list = []
 
-        for i in self.question_set['question_set']:
+        for i in self.question_set['question_set']:# takes the questions fom the json and makes each of the a Question objcet and appends them to the question_list list.
             print(i)
             self.question_list.append(Question(i['question'], i['correct_answer'], i['incorrect_answer_1'], i['incorrect_answer_2'], i['incorrect_answer_3']))
 
@@ -116,6 +91,6 @@ class Question_set(Question):
 
 
 
-p1 = Question_set(0)
+p1 = Question_set(0)# testing the code above to see if it works and correctly takes data from the json file.
 
 print(p1.question_list)

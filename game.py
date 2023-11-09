@@ -160,11 +160,11 @@ class Game:
 
 
 # all code from here down is mine unless otherwise stated
-                
+                """
                 if self.hello_button_pressed == False:
                     self.hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((self.display_x_size - 50, self.display_y_size - 25), (100, 50)),
                                                 text='Say Hello',
-                                                manager=self.manager)
+                                                manager=self.manager)"""
 
 
 
@@ -235,18 +235,18 @@ class Game:
                         
                         if event.key == pygame.K_LALT:
                             self.alt = False
-                    
+                    """
                     if event.type == pygame_gui.UI_BUTTON_PRESSED:
                         if event.ui_element == self.hello_button:
                             print('Hello World!')
                             self.hello_button_pressed == True
 
-                    self.manager.process_events(event)
+                    self.manager.process_events(event)"""
 
-            self.manager.update(time_delta)
+            #self.manager.update(time_delta)
 # dafluffy potato tutorial code unless otherwise stated
             self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
-            self.manager.draw_ui(self.screen)
+            #self.manager.draw_ui(self.screen)
             pygame.display.update()
             #self.clock.tick(60)
 
