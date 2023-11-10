@@ -13,6 +13,7 @@ from scripts.entities_copy import PhysicsEntity, Player
 from scripts.tilemap import Tilemap
 from scripts.clouds import Clouds
 from scripts.questions import Question, Question_set
+from scripts.gui_elements import Button
 
 
 
@@ -53,7 +54,8 @@ class Game:
             'player/run' : Animation(load_images('entities/player/run'), img_dur=5),
             'player/slide' : Animation(load_images('entities/player/slide'), img_dur=5),# no images yet
             'player/wall_slide' : Animation(load_images('entities/player/wall_slide'), img_dur=5),# no images yet
-            'question_screen' : load_image('backgrounds/question_format.png')
+            'question_screen' : load_image('backgrounds/question_format.png'),
+            'button_1_image' : load_image('gui/button_1.png')
         }
         
         self.clouds = Clouds(self.assets['clouds'], count = 16)
@@ -89,6 +91,10 @@ class Game:
         #self.hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((self.display_x_size - 50, self.display_y_size - 25), (100, 50)),
         #                                     text='Say Hello',
         #                                     manager=self.manager)
+
+        # Gui objects and other stuff
+
+        self.button_1 = Button()
         
         
     
@@ -150,6 +156,9 @@ class Game:
 
                 self.player.update(self.tilemap, (self.player_movement[1] - self.player_movement[0], 0))
                 self.player.render(self.display, offset = render_scroll)
+
+
+                self.button_1.render(self.display, self.assets['button_1_image'])
 
             #print(self.tilemap.tiles_around(self.player.pos)) # used for error checking on what tiles are within a 3x3 radius
 
@@ -235,6 +244,12 @@ class Game:
                         
                         if event.key == pygame.K_LALT:
                             self.alt = False
+
+
+                    if self.button_1.clicked(pygame.mouse.get_pos()) == True:
+                        print('clickity click click')
+                        self.paused = not(self.paused)
+                
                     """
                     if event.type == pygame_gui.UI_BUTTON_PRESSED:
                         if event.ui_element == self.hello_button:
