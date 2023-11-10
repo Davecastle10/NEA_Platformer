@@ -1,5 +1,14 @@
 import pygame
 
+
+# .clicked method is not working, wo it might be worth just using the mousbutton checking in the game file instead of a specific
+# method for now, also add docuemtnation about the failures and work to the word doc
+# also add a docstrings to the code below
+
+
+
+
+
 class Button:
     def __init__(self, input_pos = (0,0), input_text = "", input_size = (20, 50), ):
         self.text_to_display = input_text
