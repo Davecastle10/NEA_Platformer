@@ -19,9 +19,9 @@ class Button:
     def get_frect(self):
         pass
     
-    def clicked(self, mouse_pos):
-        if self.button_rect.collidepoint(mouse_pos):
-            for event in pygame.event.get():
+    def clicked(self, events_input):
+        if self.button_rect.collidepoint(pygame.mouse.get_pos()):
+            for event in events_input:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1:
                         return True

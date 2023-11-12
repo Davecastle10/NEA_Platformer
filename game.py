@@ -100,6 +100,7 @@ class Game:
     
     def run(self):
         while True:
+            events_list = pygame.event.get
             time_delta = self.clock.tick(60)
 
             if self.started == False:
@@ -246,9 +247,9 @@ class Game:
                             self.alt = False
 
 
-                    if self.button_1.clicked(pygame.mouse.get_pos()) == True:
-                        print('clickity click click')
-                        self.paused = not(self.paused)
+                if self.button_1.clicked(events_list) == True:
+                    print('clickity click click')
+                    self.paused = not(self.paused)
                 
                     """
                     if event.type == pygame_gui.UI_BUTTON_PRESSED:
