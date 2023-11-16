@@ -1,14 +1,5 @@
 import pygame
 
-
-# .clicked method is not working, wo it might be worth just using the mousbutton checking in the game file instead of a specific
-# method for now, also add docuemtnation about the failures and work to the word doc
-# also add a docstrings to the code below
-
-
-
-
-
 class Button:
     """A class for buttons, that will most likely be used as a parent class for other GUI componets that I create in the future
     """    
@@ -24,11 +15,16 @@ class Button:
         self.size = input_size
         self.pos = input_pos
         self.button_rect = pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1])
-
-    def get_frect(self):
-        pass
     
     def clicked(self, events_input):
+        """A method used to see if the button has been clicked
+
+        Args:
+            events_input (list): inout the pygame.event.get events list into the function so it cna see if the mouse has clicked whilst hovering over the button
+
+        Returns:
+            Bool: Tru if the button ha been clicked and False if it hasn't 
+        """        
         if self.button_rect.collidepoint(pygame.mouse.get_pos()):
             for event in events_input:
                 if event.type == pygame.MOUSEBUTTONDOWN:
@@ -38,6 +34,12 @@ class Button:
             return False
         
     def render(self, surf, image):
+        """The function to render an image for the button onto the screen
+
+        Args:
+            surf (pygame surface/screen): The surface/screen that you wan the image of the button to render to
+            image (.png or other image file): The image you want to render 
+        """        
         surf.blit(image, self.pos)
 
 
