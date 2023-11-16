@@ -100,13 +100,14 @@ class Game:
     
     def run(self):
         while True:
-            events_list = pygame.event.get
+            events_list = pygame.event.get()
+
             time_delta = self.clock.tick(60)
 
             if self.started == False:
                 self.display.blit(self.assets['start_screen'], (0,0))
 
-                for event in pygame.event.get():
+                for event in events_list:
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
@@ -116,7 +117,7 @@ class Game:
 
             elif self.showing_questions == True:
                 self.display.blit(self.assets['question_screen'], (0,0))
-                for event in pygame.event.get():
+                for event in events_list:
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
@@ -127,7 +128,7 @@ class Game:
 
             elif self.paused == True:
                 self.display.blit(self.assets['pause_screen'], (0,0))
-                for event in pygame.event.get():
+                for event in events_list:
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
@@ -179,9 +180,9 @@ class Game:
 
 
 
+                
 
-
-                for event in pygame.event.get():
+                for event in events_list:
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()

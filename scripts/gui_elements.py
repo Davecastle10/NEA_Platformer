@@ -10,7 +10,7 @@ import pygame
 
 
 class Button:
-    def __init__(self, input_pos = (0,0), input_text = "", input_size = (20, 50), ):
+    def __init__(self, input_pos = (0,0), input_text = "", input_size = (100, 40), ):
         self.text_to_display = input_text
         self.size = input_size
         self.pos = input_pos
