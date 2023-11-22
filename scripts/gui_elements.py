@@ -14,7 +14,10 @@ class Button:
         self.text_to_display = input_text
         self.size = input_size
         self.pos = input_pos
-        self.button_rect = pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1])
+        
+        self.font = pygame.font.Font(None, 36)
+        self.text_surface = self.font.render('Hello, World!', True, (189, 100, 185), None, self.size[0] * 0.8)
+        self.button_rect = pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1]) 
     
     def clicked(self, events_input):
         """A method used to see if the button has been clicked
@@ -41,6 +44,8 @@ class Button:
             image (.png or other image file): The image you want to render 
         """        
         surf.blit(image, self.pos)
+        pygame.Surface.blit(self.text_surface, self.button_rect)
+
 
 
         
