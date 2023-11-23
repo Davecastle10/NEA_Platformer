@@ -8,7 +8,7 @@ import pygame_gui
 
 import glob 
 
-from scripts.utils import load_image, load_images, Animation
+from scripts.utils import load_image, load_images, display_text_complicated, display_text_simple, Animation
 from scripts.entities_copy import PhysicsEntity, Player
 from scripts.tilemap import Tilemap
 from scripts.clouds import Clouds
@@ -73,6 +73,12 @@ class Game:
         self.started = False
         self.showing_questions = True
 
+        self.chosen_question_set = Question_set(0)
+
+
+        self.pixel_font = pygame.font.SysFont('Comic Sans', 8)
+        self.question_font = pygame.font.SysFont('Comic Sans', 72)
+
 
 
 
@@ -117,6 +123,7 @@ class Game:
 
             elif self.showing_questions == True:
                 self.display.blit(self.assets['question_screen'], (0,0))
+                display_text_complicated(self.display, (69,69), self.chosen_question_set.get_question(0), self.question_font,(1, 1, 1), None, 511)
                 for event in events_list:
                     if event.type == pygame.QUIT:
                         pygame.quit()
@@ -128,6 +135,10 @@ class Game:
 
             elif self.paused == True:
                 self.display.blit(self.assets['pause_screen'], (0,0))
+                
+
+
+
                 for event in events_list:
                     if event.type == pygame.QUIT:
                         pygame.quit()
@@ -165,7 +176,7 @@ class Game:
             #print(self.tilemap.tiles_around(self.player.pos)) # used for error checking on what tiles are within a 3x3 radius
 
 
-
+                display_text_complicated(self.display, (2, 5), "Hello World", self.pixel_font, (1, 1, 1))
 
 
 
@@ -179,6 +190,7 @@ class Game:
 
 
 
+                
 
                 
 
@@ -263,6 +275,7 @@ class Game:
             #self.manager.update(time_delta)
 # dafluffy potato tutorial code unless otherwise stated
             self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
+            #display_text(self.screen, (6, 14), "Hello World", self.pixel_font, (1, 1, 1))
             #self.manager.draw_ui(self.screen)
             pygame.display.update()
             #self.clock.tick(60)

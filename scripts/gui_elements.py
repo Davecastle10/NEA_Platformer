@@ -44,7 +44,7 @@ class Button:
             image (.png or other image file): The image you want to render 
         """        
         surf.blit(image, self.pos)
-        pygame.Surface.blit(self.text_surface, self.button_rect)
+        #pygame.Surface.blit(self.text_surface, self.button_rect)
 
 
 

@@ -46,19 +46,32 @@ class Animation:# update thsi in the future to have frames ov varying lengths ra
         return self.images[int(self.frame / self.img_duration)]
     
     # make a simple text function aswell that is less complicated
-    
-    def text(surf, text_pos, text_input, font, text_colour, bg_colour, wrap_length):
-        """A procedure to blit text to a surface
 
-        Args:
-            surf (surface you want to display text on): _description_
-            text_pos (tuple with the text location): _description_
-            text_input (str): the string of text you want to display 
-            font (a pygame.font.Font object): the pygame.font.Font object that has the txt size and font
-            text_colour (RGB code list/tuple thingy): The Rgb code .
-        """        
-        display_text = font.render(text_input, True, text_colour)
-        surf.blit(display_text, text_pos, bg_colour, wrap_length)
+def display_text_simple(surf, text_pos, text_input, font):
+    """A simple procedure to display black text on a surface
+
+    Args:
+        surf (surface you want to display text on): the surface that you want to display text on
+        text_pos (tuple(int)): the x,y coords for the top left position of the text 
+        text_input (str): the strig you want to be displayed as text 
+        font (pygame font object): the pygame font object that you wnat to use as a base for the text 
+    """    
+    display_text = font.render(text_input, False, (1, 1, 1))
+    surf.blit(display_text, text_pos)
+
+    
+def display_text_complicated(surf, text_pos, text_input, font, text_colour, bg_colour = None, wrap_length = 0):
+    """A more advanced procedure to display text of a chosen colour with a chosen background colour that can wrap lines to a surface
+
+    Args:
+        surf (surface you want to display text on): _description_
+        text_pos (tuple with the text location): _description_
+        text_input (str): the string of text you want to display 
+        font (a pygame.font.Font object): the pygame.font.Font object that has the txt size and font
+        text_colour (RGB code list/tuple thingy): The Rgb code .
+    """        
+    display_text = font.render(text_input, False, text_colour, bg_colour, wrap_length)
+    surf.blit(display_text, text_pos)
 
 
     
