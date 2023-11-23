@@ -45,4 +45,19 @@ class Animation:# update thsi in the future to have frames ov varying lengths ra
     def img(self):
         return self.images[int(self.frame / self.img_duration)]
     
+    def text(surf, text_pos, text_input, font, text_colour, bg_colour, wrap_length):
+        """A procedure to blit text to a surface
+
+        Args:
+            surf (surface you want to display text on): _description_
+            text_pos (tuple with the text location): _description_
+            text_input (str): the string of text you want to display 
+            font (a pygame.font.Font object): the pygame.font.Font object that has the txt size and font
+            text_colour (RGB code list/tuple thingy): The Rgb code .
+        """        
+        display_text = font.render(text_input, True, text_colour)
+        surf.blit(display_text, text_pos, bg_colour, wrap_length)
+
+
+    
 

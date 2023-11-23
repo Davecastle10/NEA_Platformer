@@ -16,7 +16,7 @@ class Button:
         self.pos = input_pos
         
         self.font = pygame.font.Font(None, 36)
-        self.text_surface = self.font.render('Hello, World!', True, (189, 100, 185), None, self.size[0] * 0.8)
+        self.text_surface = self.font.render('Hello, World!', True, (189, 100, 185), None, int(self.size[0] * 0.9))
         self.button_rect = pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1]) 
     
     def clicked(self, events_input):
