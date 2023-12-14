@@ -21,9 +21,23 @@ class Text:
 
         Args:
             surf (surface you want to display text on): _description_
-            text_pos (tuple with the text location): _description_
+            text_pos (tuple(int)): the top left corner of the text box in as (x,y) coords
             text_input (str): the string of text you want to display 
             text_colour (RGB code list/tuple thingy): The Rgb code .
         """        
         display_text = self.font.render(text_input, False, text_colour, bg_colour, wrap_length)
         surf.blit(display_text, text_pos)
+
+class Auto_Wrapping_Text:
+    def __init__(self, text_pos, text_destination_size, text_input, text_colour = (1, 1, 1), bg_colour = None):
+        """A ccomplicated text class that creates text thwat will automatically change size and wrap to best fit the desired location.
+
+        Args:
+            text_pos (tuple(int)): the top left corner of the text box as (x,y) coords
+            text_destination_size (tuple(int)): the size of the x and y dimensions of the text box
+            text_input (str): the text you wish to dispay
+            text_colour (tuple(int from 1 to 255), optional): the colour of the text you wish to display, not that it cannot be all as true black is transparent in the game. Defaults to (1, 1, 1).
+            bg_colour (tuple(int from 1 to 255), optional):  the colour of the text you wish to display, not that it cannot be all as true black is transparent in the game. Defaults to None.
+        """        
+        pass
+
