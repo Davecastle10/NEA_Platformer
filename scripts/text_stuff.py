@@ -1,9 +1,8 @@
 import pygame
 
 class Text:
-    def __init__(self, font_name = 'Comic Sans'):# finish this later
-        self.font = pygame.font.Font(font_name)
-        pass
+    def __init__(self, size = 8, font_name = 'Comic Sans'):# finish this later
+        self.font = pygame.font.SysFont(font_name, size)
 
     def display_text_simple(self, surf, text_pos, text_input):
         """A simple procedure to display black text on a surface
@@ -17,14 +16,14 @@ class Text:
         surf.blit(display_text, text_pos)
 
     
-def display_text_complicated(self,surf, text_pos, text_input, text_colour, bg_colour = None, wrap_length = 0):
-    """A more advanced procedure to display text of a chosen colour with a chosen background colour that can wrap lines to a surface
+    def display_text_complicated(self,surf, text_pos, text_input, text_colour, bg_colour = None, wrap_length = 0):
+        """A more advanced procedure to display text of a chosen colour with a chosen background colour that can wrap lines to a surface
 
-    Args:
-        surf (surface you want to display text on): _description_
-        text_pos (tuple with the text location): _description_
-        text_input (str): the string of text you want to display 
-        text_colour (RGB code list/tuple thingy): The Rgb code .
-    """        
-    display_text = self.font.render(text_input, False, text_colour, bg_colour, wrap_length)
-    surf.blit(display_text, text_pos)
+        Args:
+            surf (surface you want to display text on): _description_
+            text_pos (tuple with the text location): _description_
+            text_input (str): the string of text you want to display 
+            text_colour (RGB code list/tuple thingy): The Rgb code .
+        """        
+        display_text = self.font.render(text_input, False, text_colour, bg_colour, wrap_length)
+        surf.blit(display_text, text_pos)

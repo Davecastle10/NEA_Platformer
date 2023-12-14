@@ -8,12 +8,13 @@ import pygame_gui
 
 import glob 
 
-from scripts.utils import load_image, load_images, display_text_complicated, display_text_simple, Animation
+from scripts.utils import load_image, load_images,  Animation
 from scripts.entities_copy import PhysicsEntity, Player
 from scripts.tilemap import Tilemap
 from scripts.clouds import Clouds
 from scripts.questions import Question, Question_set
 from scripts.gui_elements import Button
+from scripts.text_stuff import Text
 
 
 
@@ -79,6 +80,9 @@ class Game:
         self.pixel_font = pygame.font.SysFont('Comic Sans', 8)
         self.question_font = pygame.font.SysFont('Comic Sans', 72)
 
+        self.question_text_obj = Text(72, 'Comic Sans')
+        self.small_text_obj = Text(8, 'Comic Sans')
+
 
 
 
@@ -123,7 +127,7 @@ class Game:
 
             elif self.showing_questions == True:
                 self.display.blit(self.assets['question_screen'], (0,0))
-                display_text_complicated(self.display, (69,69), self.chosen_question_set.get_question(0), self.question_font,(1, 1, 1), None, 511)
+                self.question_text_obj.display_text_complicated(self.display, (69,69), self.chosen_question_set.get_question(0), (1, 1, 1), None, 511)
                 for event in events_list:
                     if event.type == pygame.QUIT:
                         pygame.quit()
@@ -146,6 +150,8 @@ class Game:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_ESCAPE:
                             self.paused = not(self.paused)
+                    if self.button_1.clicked(events_list) == True:
+                        self.paused = not(self.paused)
                     
 
 
@@ -176,7 +182,7 @@ class Game:
             #print(self.tilemap.tiles_around(self.player.pos)) # used for error checking on what tiles are within a 3x3 radius
 
 
-                display_text_complicated(self.display, (2, 5), "Hello World", self.pixel_font, (1, 1, 1))
+                self.small_text_obj.display_text_complicated(self.display, (2, 5), "Hello World", (1, 1, 1))
 
 
 
@@ -261,7 +267,6 @@ class Game:
 
 
                 if self.button_1.clicked(events_list) == True:
-                    print('clickity click click')
                     self.paused = not(self.paused)
                 
                     """
