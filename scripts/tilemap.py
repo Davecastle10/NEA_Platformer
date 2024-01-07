@@ -19,6 +19,8 @@ AUTOTILE_MAP = {
 }
 # dafluffypotatoes tutorial code 
 #NEIGHBOUR_OFFSETS = [(-1, 0), (-1, -1), (0,-1), (1, -1), (1,0), (0, 0), (-1, 1), (0, 1), (1, 1)] # list off all tiles in a 3x3 radius of the enitity and their offset in relation to the entiy measured in tiles
+
+# I shortened and seperated the offset tile list to make it easier to work with for the new physics stuff
 NEIGHBOUR_OFFSETS_X = [(-1, 0), (0, 0), (1,0)] # list of tiles in a line length 3 that passes horizontaly throught the player and their offset in relation to the entiy measured in tiles
 NEIGHBOUR_OFFSETS_Y = [ (0,-1), (0, 0), (0, 1)] # list off all tiles in a 3x3 radius of the enitity and that arent horizontal left or right of the player without being above/below the player and their offset in relation to the entiy measured in tiles
 
@@ -35,7 +37,7 @@ class Tilemap:
 
 
     # dafluffypotatoes tutorial code
-    def tiles_around(self, pos):# origianl
+    def tiles_around(self, pos):# original
         tiles = []
         tile_loc = (int(pos[0] // self.tile_size), int(pos[1] // self.tile_size)) # converts pixel pos to grid pos
         for offset in NEIGHBOUR_OFFSETS_X:
