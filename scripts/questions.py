@@ -26,6 +26,7 @@ class Question:
         self.incorrect_answer_1 = answer_false_1
         self.incorrect_answer_2 = answer_false_2
         self.incorrect_answer_3 = answer_false_3
+        self.question_list = [self.correct_answer, self.incorrect_answer_1, self.incorrect_answer_2, self.incorrect_answer_3]
         #self.question_difficulty = input_question_difficulty
 
     def answer_attempt(self, selected_answer):
@@ -52,6 +53,9 @@ class Question:
             string: the correct answer
         """        
         return self.correct_answer
+    
+    
+
     
 
 class Question_set(Question):

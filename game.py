@@ -80,8 +80,11 @@ class Game:
         self.pixel_font = pygame.font.SysFont('Comic Sans', 8)
         self.question_font = pygame.font.SysFont('Comic Sans', 72)
 
-        self.question_text_obj = Text(72, 'Comic Sans')
+        self.question_text_obj = Text(20, 'Comic Sans')
+        self.answer_text_obj = Text(10, 'Comic Sans')
         self.small_text_obj = Text(8, 'Comic Sans')
+
+        self.question_number = 0
 
 
 
@@ -127,7 +130,20 @@ class Game:
 
             elif self.showing_questions == True:
                 self.display.blit(self.assets['question_screen'], (0,0))
-                self.question_text_obj.display_text_complicated(self.display, (69,69), self.chosen_question_set.get_question(0), (1, 1, 1), None, 511)
+
+                # displaying the question
+                self.question_text_obj.display_text_complicated(self.display, (66,60), self.chosen_question_set.get_question(self.question_number), (1, 1, 1), None, 511)
+
+                # displaying the answers
+                #correct answer in red corner
+                self.answer_text_obj.display_text_complicated(self.display, (50,180), self.chosen_question_set.question_list[self.question_number].give_correct_answer(), (1, 1, 1), None, 250)
+                #blue corner incorrect answer
+                self.answer_text_obj.display_text_complicated(self.display, (335,180), self.chosen_question_set.question_list[self.question_number].incorrect_answer_1, (1, 1, 1), None, 250)
+                #yellow corner incorrect answer
+                self.answer_text_obj.display_text_complicated(self.display, (50,270), self.chosen_question_set.question_list[self.question_number].incorrect_answer_2, (1, 1, 1), None, 250)
+                #green corner incorrect answer
+                self.answer_text_obj.display_text_complicated(self.display, (335,270), self.chosen_question_set.question_list[self.question_number].incorrect_answer_3, (1, 1, 1), None, 250)
+
                 for event in events_list:
                     if event.type == pygame.QUIT:
                         pygame.quit()
