@@ -117,7 +117,7 @@ class Tilemap:
         for tile in self.tiles_around_x(pos):
             if tile['type'] in INTERACTION_BlOCKS:
                 #
-                rects.append(pygame.Rect(tile['pos'][0] * self.tile_size, tile['pos'][1] * self.tile_size, self.tile_size, self.tile_size))
+                rects.append([pygame.Rect(tile['pos'][0] * self.tile_size, tile['pos'][1] * self.tile_size, self.tile_size, self.tile_size), tile['variant']])
         return rects
     
     def question_blocks_around_y(self, pos):# only tiles vertical to player

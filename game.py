@@ -58,6 +58,8 @@ class Game:
             'question_screen' : load_image('backgrounds/question_format.png'),
             'button_1_image' : load_image('gui/button_1.png'),
             'question_blocks' : load_images('tiles/question_blocks'),
+            'congratulations_screen' : load_image('backgrounds/congratulations_screen.png'),
+            'wrong_answer_screen' : load_image('backgrounds/wrong_answer_screen.png'),
         }
         
         self.clouds = Clouds(self.assets['clouds'], count = 16)
@@ -159,6 +161,22 @@ class Game:
                 
 
 
+
+                for event in events_list:
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_ESCAPE:
+                            self.paused = not(self.paused)
+                    if self.button_1.clicked(events_list) == True:
+                        self.paused = not(self.paused)
+
+            elif self.player.question_collison['red'] == True or self.player.question_collison['blue'] == True or self.player.question_collison['yellow'] == True or self.player.question_collison['green'] == True or self.player.question_collison['red'] == True:
+                if self.player.question_collison['red'] == True:
+                    self.display.blit(self.assets['congratulations_screen'], (0,0))
+                else:
+                    self.display.blit(self.assets['wrong_answer_screen'], (0,0))
 
                 for event in events_list:
                     if event.type == pygame.QUIT:
