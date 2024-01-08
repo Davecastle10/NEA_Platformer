@@ -56,7 +56,8 @@ class Game:
             'player/slide' : Animation(load_images('entities/player/slide'), img_dur=5),# no images yet
             'player/wall_slide' : Animation(load_images('entities/player/wall_slide'), img_dur=5),# no images yet
             'question_screen' : load_image('backgrounds/question_format.png'),
-            'button_1_image' : load_image('gui/button_1.png')
+            'button_1_image' : load_image('gui/button_1.png'),
+            'question_blocks' : load_images('tiles/question_blocks'),
         }
         
         self.clouds = Clouds(self.assets['clouds'], count = 16)
