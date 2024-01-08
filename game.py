@@ -178,6 +178,8 @@ class Game:
                 else:
                     self.display.blit(self.assets['wrong_answer_screen'], (0,0))
 
+                    # now add buttons that allow the player to play a new level with a different question or quit the game.
+
                 for event in events_list:
                     if event.type == pygame.QUIT:
                         pygame.quit()
