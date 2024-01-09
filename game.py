@@ -78,6 +78,7 @@ class Game:
         self.started = False
         self.showing_questions = True
         self.display_wrong_screen = False
+        self.wrong_answer_immunity = 0
 
         self.chosen_question_set = Question_set(0)
 
@@ -195,16 +196,20 @@ class Game:
 
 
                 else:# if you didnt get the correct answer
-                    if self.display_wrong_screen == False:
-                        self.display.blit(self.assets['wrong_answer_screen'], (0,0))# display wrong answer screen
-                        self.display_wrong_screen = True# so the next selection code block runs
-                    
-                    elif self.display_wrong_screen == True:
-                        self.display.blit(self.assets['wrong_answer_screen'], (0,0))# display wrong answer screen
-                        time.sleep(3)# sleeps game for 3 secconds so the wrong answer screen is dispayed for a few secconds before going back to the game
-                        self.display_wrong_screen = False# makes it so this selection block won't run automatically again
-                        self.player.question_collison = {'red': False, 'blue' : False, 'yellow' : False, 'green' : False}# resets the question bloack collisions like above.
+                    if self.wrong_answer_immunity == 0:
+                        if self.display_wrong_screen == False:
+                            self.display.blit(self.assets['wrong_answer_screen'], (0,0))# display wrong answer screen
+                            self.display_wrong_screen = True# so the next selection code block runs
 
+
+                        # add some kind of immunity or respite system to this so that the player isn't stuck in an infinte loop of wrong answer screens.
+                        
+                        elif self.display_wrong_screen == True:
+                            self.display.blit(self.assets['wrong_answer_screen'], (0,0))# display wrong answer screen
+                            time.sleep(3)# sleeps game for 3 secconds so the wrong answer screen is dispayed for a few secconds before going back to the game
+                            self.display_wrong_screen = False# makes it so this selection block won't run automatically again
+                            self.player.question_collison = {'red': False, 'blue' : False, 'yellow' : False, 'green' : False}# resets the question bloack collisions like above.
+                            self.wrong_answer_immunity = 60
 
 
 
@@ -264,7 +269,8 @@ class Game:
 
 
 
-                
+                if self.wrong_answer_immunity > 0:
+                    self.wrong_answer_immunity = self.wrong_answer_immunity - 1
 
                 
 
