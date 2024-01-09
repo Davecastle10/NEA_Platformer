@@ -196,7 +196,7 @@ class Game:
 
 
                 else:# if you didnt get the correct answer
-                    if self.wrong_answer_immunity == 0:
+                    if self.wrong_answer_immunity <= 0:# if wrong answer immunity is on, to prevent you from being stuck on wrong answer screen
                         if self.display_wrong_screen == False:
                             self.display.blit(self.assets['wrong_answer_screen'], (0,0))# display wrong answer screen
                             self.display_wrong_screen = True# so the next selection code block runs
