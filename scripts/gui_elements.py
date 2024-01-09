@@ -1,4 +1,5 @@
 import pygame
+from scripts.text_stuff import Text
 
 class Button:
     """A class for buttons, that will most likely be used as a parent class for other GUI componets that I create in the future
@@ -18,6 +19,8 @@ class Button:
         self.font = pygame.font.Font(None, 36)
         self.text_surface = self.font.render('Hello, World!', True, (189, 100, 185), None, int(self.size[0] * 0.9))
         self.button_rect = pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1]) 
+
+        self.small_text_obj = Text(9, 'Comic Sans')
     
     def clicked(self, events_input):
         """A method used to see if the button has been clicked
@@ -42,8 +45,12 @@ class Button:
         Args:
             surf (pygame surface/screen): The surface/screen that you wan the image of the button to render to
             image (.png or other image file): The image you want to render 
-        """        
+        """     
+        
+        adjusted_pos = (self.pos[0] + min(int(self.size[0] * 0.05), 5), self.pos[1] + min(int(self.size[1] * 0.15), 3))
+        pos_copy = self.pos   
         surf.blit(image, self.pos)
+        self.small_text_obj.display_text_complicated(surf, adjusted_pos, self.text_to_display, (1, 1, 1))
         #pygame.Surface.blit(self.text_surface, self.button_rect)
 
 

@@ -110,7 +110,9 @@ class Game:
 
         # Gui objects and other stuff
 
-        self.button_1 = Button()
+        self.button_1 = Button([2,5], "Pause")
+        
+        self.next_level_button = Button([295, 220], "Next Level")
         
         
     
@@ -173,8 +175,22 @@ class Game:
                         self.paused = not(self.paused)
 
             elif self.player.question_collison['red'] == True or self.player.question_collison['blue'] == True or self.player.question_collison['yellow'] == True or self.player.question_collison['green'] == True or self.player.question_collison['red'] == True:
+                
                 if self.player.question_collison['red'] == True:
+
                     self.display.blit(self.assets['congratulations_screen'], (0,0))
+                    self.next_level_button.render(self.display, self.assets['button_1_image'])
+
+                    if self.next_level_button.clicked(events_list) == True:
+                        print('sdfafsdfsfsdfsdfsdfsdfsdfsdfsdf')
+                        self.current_map_index = (self.current_map_index + 1) % len(self.maps_list)
+                        self.question_number = (self.question_number + 1) % len(self.chosen_question_set.question_list)
+                        self.showing_questions = True
+                        self.player.question_collison = {'red': False, 'blue' : False, 'yellow' : False, 'green' : False}
+
+                        
+
+
                 else:
                     self.display.blit(self.assets['wrong_answer_screen'], (0,0))
 
@@ -219,7 +235,7 @@ class Game:
             #print(self.tilemap.tiles_around(self.player.pos)) # used for error checking on what tiles are within a 3x3 radius
 
 
-                self.small_text_obj.display_text_complicated(self.display, (2, 5), "Hello World", (1, 1, 1))
+                #self.small_text_obj.display_text_complicated(self.display, (2, 5), "Hello World", (1, 1, 1))
 
 
 
