@@ -5,6 +5,7 @@ import sys
 import pygame 
 from pygame import freetype
 import pygame_gui
+import time
 
 import glob 
 
@@ -76,6 +77,7 @@ class Game:
         self.paused = False
         self.started = False
         self.showing_questions = True
+        self.display_wrong_screen = False
 
         self.chosen_question_set = Question_set(0)
 
@@ -181,18 +183,31 @@ class Game:
                     self.display.blit(self.assets['congratulations_screen'], (0,0))
                     self.next_level_button.render(self.display, self.assets['button_1_image'])
 
-                    if self.next_level_button.clicked(events_list) == True:
-                        print('sdfafsdfsfsdfsdfsdfsdfsdfsdfsdf')
-                        self.current_map_index = (self.current_map_index + 1) % len(self.maps_list)
-                        self.question_number = (self.question_number + 1) % len(self.chosen_question_set.question_list)
-                        self.showing_questions = True
-                        self.player.question_collison = {'red': False, 'blue' : False, 'yellow' : False, 'green' : False}
+                    if self.next_level_button.clicked(events_list) == True:# for some reason this doesnt run
+                        print('testing')
+                        self.current_map_index = (self.current_map_index + 1) % len(self.maps_list)# moves you to the next map in folder and is circular if you are in last map.
+                        self.question_number = (self.question_number + 1) % len(self.chosen_question_set.question_list)# like above but for the question
+                        self.showing_questions = True# makes is so that the question screen is shown when you move to the next level/map
+                        self.player.question_collison = {'red': False, 'blue' : False, 'yellow' : False, 'green' : False}# resets the collisions with the question blocks so that
+                        # you leave the congratulations screen
 
                         
 
 
-                else:
-                    self.display.blit(self.assets['wrong_answer_screen'], (0,0))
+                else:# if you didnt get the correct answer
+                    if self.display_wrong_screen == False:
+                        self.display.blit(self.assets['wrong_answer_screen'], (0,0))# display wrong answer screen
+                        self.display_wrong_screen = True# so the next selection code block runs
+                    
+                    elif self.display_wrong_screen == True:
+                        self.display.blit(self.assets['wrong_answer_screen'], (0,0))# display wrong answer screen
+                        time.sleep(3)# sleeps game for 3 secconds so the wrong answer screen is dispayed for a few secconds before going back to the game
+                        self.display_wrong_screen = False# makes it so this selection block won't run automatically again
+                        self.player.question_collison = {'red': False, 'blue' : False, 'yellow' : False, 'green' : False}# resets the question bloack collisions like above.
+
+
+
+
 
                     # now add buttons that allow the player to play a new level with a different question or quit the game.
 
