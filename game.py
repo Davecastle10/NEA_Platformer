@@ -34,8 +34,6 @@ class Game:
         self.screen = pygame.display.set_mode((self.display_x_size * 2, self.display_y_size * 2))
         self.display = pygame.Surface((self.display_x_size, self.display_y_size))
 
-        self.manager = pygame_gui.UIManager((self.display_x_size * 2, self.display_y_size * 2))
-        self.hello_button_pressed = False
 
 
         self.clock = pygame.time.Clock()
@@ -82,10 +80,6 @@ class Game:
 
         self.chosen_question_set = Question_set(0)
 
-
-        self.pixel_font = pygame.font.SysFont('Comic Sans', 8)
-        self.question_font = pygame.font.SysFont('Comic Sans', 72)
-
         self.question_text_obj = Text(20, 'Comic Sans')
         self.answer_text_obj = Text(10, 'Comic Sans')
         self.small_text_obj = Text(8, 'Comic Sans')
@@ -107,11 +101,6 @@ class Game:
         self.tilemap.load(self.maps_list[self.current_map_index])
 
 
-        #self.hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((self.display_x_size - 50, self.display_y_size - 25), (100, 50)),
-        #                                     text='Say Hello',
-        #                                     manager=self.manager)
-
-        # Gui objects and other stuff
 
         self.button_1 = Button([2,5], "Pause")
         
@@ -250,23 +239,9 @@ class Game:
                 self.player.render(self.display, offset = render_scroll)
 
 
-                self.button_1.render(self.display, self.assets['button_1_image'])
-
-            #print(self.tilemap.tiles_around(self.player.pos)) # used for error checking on what tiles are within a 3x3 radius
-
-
-                #self.small_text_obj.display_text_complicated(self.display, (2, 5), "Hello World", (1, 1, 1))
-
-
-
-
 # all code from here down is mine unless otherwise stated
-                """
-                if self.hello_button_pressed == False:
-                    self.hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((self.display_x_size - 50, self.display_y_size - 25), (100, 50)),
-                                                text='Say Hello',
-                                                manager=self.manager)"""
 
+                self.button_1.render(self.display, self.assets['button_1_image'])
 
 
                 if self.wrong_answer_immunity > 0:
@@ -343,20 +318,8 @@ class Game:
                 if self.button_1.clicked(events_list) == True:
                     self.paused = not(self.paused)
                 
-                    """
-                    if event.type == pygame_gui.UI_BUTTON_PRESSED:
-                        if event.ui_element == self.hello_button:
-                            print('Hello World!')
-                            self.hello_button_pressed == True
-
-                    self.manager.process_events(event)"""
-
-            #self.manager.update(time_delta)
 # dafluffy potato tutorial code unless otherwise stated
             self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
-            #display_text(self.screen, (6, 14), "Hello World", self.pixel_font, (1, 1, 1))
-            #self.manager.draw_ui(self.screen)
             pygame.display.update()
-            #self.clock.tick(60)
 
 Game().run()
