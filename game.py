@@ -55,7 +55,7 @@ class Game:
             'player/slide' : Animation(load_images('entities/player/slide'), img_dur=5),# no images yet
             'player/wall_slide' : Animation(load_images('entities/player/wall_slide'), img_dur=5),# no images yet
             'question_screen' : load_image('backgrounds/question_format.png'),
-            'button_1_image' : load_image('gui/button_1.png'),
+            'pause_button_image' : load_image('gui/button_1.png'),
             'question_blocks' : load_images('tiles/question_blocks'),
             'congratulations_screen' : load_image('backgrounds/congratulations_screen.png'),
             'wrong_answer_screen' : load_image('backgrounds/wrong_answer_screen.png'),
@@ -96,13 +96,12 @@ class Game:
         for filename in glob.iglob(f'{self.maps_path}/*'):
             self.maps_list.append(filename)
 
-        #self.current_map = 'data/maps/map.json' # don't think i need this anymore
-        self.current_map_index = 0
+        # loading a specific map
+        self.current_map_index = 1
         self.tilemap.load(self.maps_list[self.current_map_index])
 
 
-
-        self.button_1 = Button([2,5], "Pause")
+        self.pause_button = Button([2,5], "Pause")
         
         self.next_level_button = Button([295, 220], "Next Level")
         
@@ -163,7 +162,7 @@ class Game:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_ESCAPE:
                             self.paused = not(self.paused)
-                    if self.button_1.clicked(events_list) == True:
+                    if self.pause_button.clicked(events_list) == True:
                         self.paused = not(self.paused)
 
             elif self.player.question_collison['red'] == True or self.player.question_collison['blue'] == True or self.player.question_collison['yellow'] == True or self.player.question_collison['green'] == True or self.player.question_collison['red'] == True:
@@ -171,7 +170,7 @@ class Game:
                 if self.player.question_collison['red'] == True:
 
                     self.display.blit(self.assets['congratulations_screen'], (0,0))
-                    self.next_level_button.render(self.display, self.assets['button_1_image'])
+                    self.next_level_button.render(self.display, self.assets['pause_button_image'])
 
                     if self.next_level_button.clicked(events_list) == True:# for some reason this doesnt run
                         print('testing')
@@ -212,7 +211,7 @@ class Game:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_ESCAPE:
                             self.paused = not(self.paused)
-                    if self.button_1.clicked(events_list) == True:
+                    if self.pause_button.clicked(events_list) == True:
                         self.paused = not(self.paused)
                     
 
@@ -241,7 +240,7 @@ class Game:
 
 # all code from here down is mine unless otherwise stated
 
-                self.button_1.render(self.display, self.assets['button_1_image'])
+                self.pause_button.render(self.display, self.assets['pause_button_image'])
 
 
                 if self.wrong_answer_immunity > 0:
@@ -315,7 +314,7 @@ class Game:
                             self.alt = False
 
 
-                if self.button_1.clicked(events_list) == True:
+                if self.pause_button.clicked(events_list) == True:
                     self.paused = not(self.paused)
                 
 # dafluffy potato tutorial code unless otherwise stated
