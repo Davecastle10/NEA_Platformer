@@ -57,6 +57,7 @@ class Game:
             'question_screen' : load_image('backgrounds/question_format.png'),
             'pause_button_image' : load_image('gui/button_1.png'),
             'question_blocks' : load_images('tiles/question_blocks'),
+            'game_icon' : load_image('tiles/question_blocks/0.png'),
             'congratulations_screen' : load_image('backgrounds/congratulations_screen.png'),
             'wrong_answer_screen' : load_image('backgrounds/wrong_answer_screen.png'),
         }
@@ -71,6 +72,10 @@ class Game:
         self.scroll = [0, 0]
 
 # my code unless otherwise stated
+        
+
+        pygame.display.set_icon(self.assets['game_icon'])
+
         self.alt = False
         self.paused = False
         self.started = False
