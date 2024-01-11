@@ -30,7 +30,7 @@ class Game:
         self.display_x_size = 640
         self.display_y_size = 380
 
-        pygame.display.set_caption("NEA Platformer")
+        pygame.display.set_caption("NEA Platformer - Jumping To Conclusions")
         self.screen = pygame.display.set_mode((self.display_x_size * 2, self.display_y_size * 2))
         self.display = pygame.Surface((self.display_x_size, self.display_y_size))
 
