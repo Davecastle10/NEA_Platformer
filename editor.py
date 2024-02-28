@@ -19,9 +19,11 @@ class Editor:
         pygame.init()
 
         pygame.display.set_caption("Editor")
-        self.screen = pygame.display.set_mode((1280,800))
-        self.display = pygame.Surface((640, 400))
+        self.display_x_size = 640
+        self.display_y_size = 380
 
+        self.screen = pygame.display.set_mode((self.display_x_size * 2, self.display_y_size * 2))
+        self.display = pygame.Surface((self.display_x_size, self.display_y_size))
 
         self.clock = pygame.time.Clock()
 
@@ -31,6 +33,7 @@ class Editor:
             'grass': load_images('tiles/grass'),
             'large_decor': load_images('tiles/large_decor'),
             'stone': load_images('tiles/stone'),
+            'question_blocks' : load_images('tiles/question_blocks'),
         }
         
         

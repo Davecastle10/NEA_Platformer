@@ -45,4 +45,10 @@ class Animation:# update thsi in the future to have frames ov varying lengths ra
     def img(self):
         return self.images[int(self.frame / self.img_duration)]
     
+    # make a simple text function aswell that is less complicated
+
+
+
+
+    
 

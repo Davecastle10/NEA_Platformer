@@ -1,0 +1,38 @@
+{ "question_set": [
+        {
+            "question": "What is 2 + 2?",
+            "correct_answer": "4",
+            "incorrect_answer_1": "3",
+            "incorrect_answer_2": "5",
+            "incorrect_answer_3": "1",
+            "question_difficulty": "1"
+        },
+
+        {
+            "question": "What is 2 + 3?",
+            "correct_answer": "5",
+            "incorrect_answer_1": "4",
+            "incorrect_answer_2": "6",
+            "incorrect_answer_3": "7",
+            "question_difficulty": "1"
+        },
+
+        {
+            "question": "What is 2 x 2?",
+            "correct_answer": "4",
+            "incorrect_answer_1": "3",
+            "incorrect_answer_2": "8",
+            "incorrect_answer_3": "2",
+            "question_difficulty": "2"
+        },
+        
+        {
+            "question": "What is 2 to the power 10 or 2^10 or 2**10?",
+            "correct_answer": "1024",
+            "incorrect_answer_1": "512",
+            "incorrect_answer_2": "256",
+            "incorrect_answer_3": "2048",
+            "question_difficulty": "3"
+        }
+    ]
+}
