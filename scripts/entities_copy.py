@@ -1,5 +1,6 @@
-# all of this is from dafluffypotatos tutorial https://www.youtube.com/watch?v=2gABYM5M0ww&t=6923s unless otherwaise stated atm 
+# code is from dafluffypotatos tutorial https://www.youtube.com/watch?v=2gABYM5M0ww&t=6923s unless otherwaise stated atm 
 
+#
 import pygame
 
 # dafluffy potato tutorial code unless otherwise stated
@@ -131,7 +132,7 @@ class PhysicsEntity:
         if movement_input[0] < 0:# if move left the flip to face left
             self.flip = True
 
-        self.velocity[1] = min(5, self.velocity[1] + 0.1) # starts with with a down vel of 1 and increments by 0. until it reaches 5 which is terminal velocity
+        self.velocity[1] = min(5, self.velocity[1] + 0.1) # starts with with a down vel of 1 and increments by 0.1 until it reaches 5 which is terminal velocity
 
         if self.collisions['down'] or self.collisions['up']:
             self.velocity[1] = 0

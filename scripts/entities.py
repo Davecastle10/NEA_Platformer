@@ -1,5 +1,5 @@
 # all of this is from dafluffypotatos tutorial https://www.youtube.com/watch?v=2gABYM5M0ww&t=6923s unless otherwaise stated atm 
-
+# this file is not actually implemetned in the game, it is just a previous version that I kept around for comparison.
 import pygame
 
 # dafluffypotatoes tutorial code
