@@ -93,8 +93,3 @@ class Question_set(Question):
         """        
         return self.question_list[question_index].question
 
-
-
-p1 = Question_set(0)# testing the code above to see if it works and correctly takes data from the json file.
-
-print(p1.question_list)
