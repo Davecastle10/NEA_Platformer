@@ -160,7 +160,7 @@ class Player(PhysicsEntity):
         if self.collisions['down'] == False and self.collisions['right'] == True or self.collisions['left'] == True:
             self.wall_jump = True
         
-# not my code i think
+# not my code
         self.air_time += 1
         if self.collisions['down']: # if not touching the ground
             self.air_time = 0
