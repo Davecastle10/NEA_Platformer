@@ -28,7 +28,7 @@ class Text:
         display_text = self.font.render(text_input, False, text_colour, bg_colour, wrap_length)
         surf.blit(display_text, text_pos)
 
-class Auto_Wrapping_Text:
+class Auto_Wrapping_Text: # I was going to start working on this, and then utilised the other code in this file instead.
     def __init__(self, text_pos, text_destination_size, text_input, text_colour = (1, 1, 1), bg_colour = None):
         """A ccomplicated text class that creates text thwat will automatically change size and wrap to best fit the desired location.
 
