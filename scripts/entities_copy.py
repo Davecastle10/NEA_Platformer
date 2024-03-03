@@ -55,17 +55,6 @@ class PhysicsEntity:
         
         # seperated collisions into x and y to make them easier
 
-
-        """ I belive i have figured out what the problem with the zooming physics is
-        self.e_frect.right = rect.left
-        self.e_frect.left = rect.right
-        self.e_frect.bottom = rect.top
-        self.e_frect.top = rect.bottom
-        
-        when thes lines are commented out the character no longer zooms about, and instead moves at the normal
-        speed, howver the charchter does have a tendencie to phase thourgh objects"""
-
-
         
         for rect in tilemap.physics_rects_around_x(self.pos):
             if self.e_frect.colliderect(rect):
