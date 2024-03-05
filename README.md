@@ -1,14 +1,4 @@
 # NEA_Platformer
 ## This is where my computer science NEA (Non Examined Assessment) work will be.
 
-At the moment most of the code is taken from a tutorial by dafluffypotatos https://www.youtube.com/watch?v=2gABYM5M0ww&t=6923s, as I am following it until I get to the point where he implements his level editor, and at that point I will go and work backwards changing the code to be fully my own whilst ensuring the level editor still functions.
-
-now i have implemnetd the level editor properly, i need to go back and optimise the game for pygame-ce, and by doing this i should end up replacing a significant amount fo the code, so i would actually be able to submit the game as my own.
-
-Once that is done i can go in and add a gui menu for the game (probably with tkinter), and then i can add in the question system, enemies and combat, i think the plan will also be to make a gui for the level editor, so that the players can make their own levels and add in their own questions. And if i get all of that done, i will try to add in procedural level generation.
-
-got to 3:13:32 in tutorial
-
-
-
-my name for George's game "Balthazar's Bizarre Amphistylar Voussoir Alcazar Bazaar of Commissaris Babar's Liquidambar Grimoires" and will be added as the name of a shop or map in the game and i should add a charachter 'Balthazar' and 'Commissaris Babar'
+This is the Github rep for my 2024 OCR A-level computer science NEA. I have marked what code is my own and what code is fomr external sources via the comments in the individual files - the tutorila i mention a lot by dafluffypotatos on youtube can be found here https://www.youtube.com/watch?v=2gABYM5M0ww&t=6923s. Some of the files like the eentities' file and the 'enetities_copy_with_teleporty_physics_files' are legacy files that are not needed for the game to run, and are not used in the final code, but I have kept them in the repository because they served as a valuable point of refernce for whilst I was coding the game, and could continue to do so if I happen to revisit this project in a few years time.
